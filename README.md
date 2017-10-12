@@ -26,6 +26,13 @@
   * If everything worked you should be able to succesfully go to,
     * http://localhost:8000
   * BitBoard should be working if successful
+  
+* -- To Use Python Interpretor With Docker --
+  * Enter on the command line,
+    * $ docker exec -it bitboard_web_1 bash
+  * then enter, 
+    * $ python  
+
 
 * -- To Stop Docker --
   * Enter ^C (Control-C) to stop the localhost server
