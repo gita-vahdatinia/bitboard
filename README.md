@@ -11,15 +11,16 @@
 
 ### How do I get set up? ###
 
-* Make sure you have Docker Compose installed. Download it from here https://docs.docker.com/compose/install/
+* -- Installing Docker --
+* Make sure you have Docker Compose installed. Download it from here, https://docs.docker.com/compose/install/
 
-* Once installed, clone this repository 
-* Then 
+* Once installed, clone this repository.
+* Then,
 * $ cd bitboard
 
 * -- To Start Docker --
 
-* Now, run
+* Run
 * $ docker-compose build
 * $ docker-compose up
 
@@ -34,10 +35,10 @@
 
 ### Who do I talk to? ###
 
-* Product Owner 
+* Product Owner
 * joastern@ucsc.edu
 
-* Developers 
+* Developers
 * Matt Email
 * Guita Email
 * Haonan Email
