@@ -45,8 +45,8 @@
   * joastern@ucsc.edu
 
 ### --- Developers --- ###
-  * Matt Email
-  * Guita Email
-  * Haonan Email
-  * Fransico Email
-  * joastern@ucsc.edu
+  * Fransico Braga -- fbraga@ucsc.edu
+  * Guita Vahdatinia -- gvahdati@ucsc.edu
+  * Haonan -- hxu24@ucsc.edu
+  * Joshua Stern -- joastern@ucsc.edu
+  * Matt Cruz -- maaucruz@ucsc.edu
