@@ -42,11 +42,11 @@
 ### Who do I talk to? ###
 
 ### --- Product Owner --- ###
-  * joastern@ucsc.edu
+  * Joshua Stern -- joastern@ucsc.edu
 
 ### --- Developers --- ###
   * Fransico Braga -- fbraga@ucsc.edu
   * Guita Vahdatinia -- gvahdati@ucsc.edu
-  * Haonan -- hxu24@ucsc.edu
+  * Haonan Xu -- hxu24@ucsc.edu
   * Joshua Stern -- joastern@ucsc.edu
   * Matt Cruz -- maaucruz@ucsc.edu
