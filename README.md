@@ -1,7 +1,5 @@
 # README #
 
-* Documents whatever steps are necessary to get BitBoard up and running.
-
 ### What is this repository for? ###
 
 * BitBoard gives users the ability to monitor their favorite cryptocurrencies, portfolio, news, and friends
