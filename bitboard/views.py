@@ -8,4 +8,4 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("Welcome to BitBoard! On Master Branch!")
+    return HttpResponse("Welcome to BitBoard! On Joshua2 Branch!")
