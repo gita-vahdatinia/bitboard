@@ -5,7 +5,7 @@
 ### What is this repository for? ###
 
 * BitBoard gives users the ability to monitor their favorite cryptocurrencies, portfolio, news, and friends
-* This repository is the code for BitBoard, which is written in using the framework Django and is run using Docker
+* This repository is the code for BitBoard, which is written using the Python framework Django and is run using Docker
 * Version 1.0
 
 
