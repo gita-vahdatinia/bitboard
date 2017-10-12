@@ -31,7 +31,7 @@
   * Enter on the command line,
     * $ docker exec -it bitboard_web_1 bash
   * then enter, 
-    * $ python  
+    * $ python manage.py shell
 
 
 * -- To Stop Docker --
