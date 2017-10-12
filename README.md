@@ -13,7 +13,7 @@
   
 ### --- Clone BitBoard Source Code --- ###
   * Once installed, clone the BitBoard repository using the following command:
-    * git clone https://joastern@bitbucket.org/joastern/bitboard.git
+    * git clone https://[YOUR USERNAME]@bitbucket.org/[YOUR USERNAME]/bitboard.git
   * Then, on the command line, move into the BitBoard direcotry using the following command:
     * $ cd bitboard
 
