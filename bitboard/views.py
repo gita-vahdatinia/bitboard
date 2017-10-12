@@ -7,5 +7,13 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+# importing loading from django template
+from django.template import loader
+
 def index(request):
-    return HttpResponse("Welcome to BitBoard!")
+
+    # getting the template
+    template = loader.get_template('index.html')
+
+    # rendering the template in HttpResponse
+    return HttpResponse(template.render())
