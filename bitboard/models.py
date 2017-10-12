@@ -14,7 +14,7 @@ class Cryptocurrency(models.Model):
     price_btc = models.DecimalField(max_digits = 20, decimal_places = 2, null=True)
     volume_24h_usd = models.DecimalField(max_digits = 20, decimal_places = 2, null=True)
     market_cap_usd = models.DecimalField(max_digits = 20, decimal_places = 2, null=True)
-    availabe_supply = models.DecimalField(max_digits = 20, decimal_places = 2, null=True)
+    available_supply = models.DecimalField(max_digits = 20, decimal_places = 2, null=True)
     total_supply = models.DecimalField(max_digits = 20, decimal_places = 2, null=True)
     percent_change_1h = models.DecimalField(max_digits = 20, decimal_places = 2, null=True)
     percent_change_24h = models.DecimalField(max_digits = 20, decimal_places = 2, null=True)
