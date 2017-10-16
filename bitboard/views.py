@@ -8,10 +8,10 @@ from .models import Cryptocurrency
 from .services import add_tokens_to_database
 
 def index(request):
-    add_tokens_to_database()
     return HttpResponse("<h1>Welcome Page</h1>")
 
 def cryptocurrency(request):
+    add_tokens_to_database()    
     all_tokens = Cryptocurrency.objects.all()
     return render(request, 'bitboard/cryptocurrency.html', {"all_tokens": all_tokens})
 

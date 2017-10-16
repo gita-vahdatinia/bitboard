@@ -8,20 +8,19 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */
+
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
 
     .coins {
-      padding-bottom: 300px;
+      padding-bottom: 100px;
+      overflow-x: auto;
     }
 
-    tr:hover {background-color: #f5f5f5}
-
-    td {
-      text-align: left;
+    table {
+      overflow-y: scroll;
     }
 
     th {
@@ -29,11 +28,25 @@
       color: white;
     }
 
-    /* Add a gray background color and some padding to the footer */
+    tr:hover {
+      background-color: #f5f5f5
+    }
+
+    td {
+      text-align: left;
+    }
+
+    #table-scroll {
+      height:400px;
+      overflow:auto;
+      margin-top:18px;
+    }
+
     footer {
       background-color: #f2f2f2;
       padding: 25px;
     }
+
   </style>
 </head>
 <body>
@@ -67,9 +80,9 @@
     <p>To The Moon</p>
   </div>
 </div>
-<div class="coins container-fluid bg-3 text-center" style="overflow-x:auto;">
+<div class="coins container-fluid bg-3 text-center" id="table-wrapper">
   <h3>Cryptocurrency</h3><br>
-  <div>
+  <div id="table-scroll">
     {% if all_tokens %}
       <table class="table">
         <thead>
@@ -90,7 +103,7 @@
         </thead>
         <tbody>
           {% for token in all_tokens %}
-          <tr>
+            <tr>
               <td><a href="/cryptocurrency/{{token.tag}}">{{token.name}}</a></td>
               <td>{{token.symbol}}</td>
               <td>{{token.rank}}</td>
@@ -104,11 +117,11 @@
               <td>{{token.percent_change_24h}}</td>
               <td>{{token.percent_change_7d}}</td>
             </tr>
-            {% endfor%}
+          {% endfor%}
         </tbody>
       </table>
     {% else %}
-      <h3>No Tokens Available</h3>
+      <h3 style="text-align: right">No Tokens Available</h3>
     {% endif%}
   </div>
 </div>
