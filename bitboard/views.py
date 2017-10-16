@@ -2,14 +2,22 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.template import loader
-from bitboard import services
+from django.http import Http404
+from django.shortcuts import render
+from .models import Cryptocurrency
+from .services import add_tokens_to_database
 
 def index(request):
-    # getting the template
-    template = loader.get_template('bitboard/index.html')
-    # rendering the template in HttpResponse
-    return HttpResponse(template.render())
+    add_tokens_to_database()
+    return HttpResponse("<h1>Welcome Page</h1>")
+
+def cryptocurrency(request):
+    all_tokens = Cryptocurrency.objects.all()
+    return render(request, 'bitboard/cryptocurrency.html', {"all_tokens": all_tokens})
 
 def token(request, token_tag):
-    return HttpResponse("You're looking at %s." % token_tag)
+    try:
+        token = Cryptocurrency.objects.get(tag=token_tag)
+    except Cryptocurrency.DoesNotExist:
+        raise Http404( token_tag + " does not exist")
+    return render(request, 'bitboard/token.html', {"token": token})
