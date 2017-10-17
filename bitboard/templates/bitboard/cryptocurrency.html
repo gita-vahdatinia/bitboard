@@ -31,11 +31,14 @@
 
     table {
       overflow-y: scroll;
+      width: 20px
     }
 
     th {
       background-color: #4CAF50;
       color: white;
+      font-size: 20px;
+
     }
 
     tr:hover {
@@ -55,6 +58,10 @@
     footer {
       background-color: #f2f2f2;
       padding: 25px;
+    }
+
+    .col_name{
+      cursor: pointer; cursor: hand;
     }
 
   </style>
@@ -90,25 +97,25 @@
     <p>To The Moon</p>
   </div>
 </div>
-<div class="coins container-fluid bg-3 text-center" id="table-wrapper">
+<div.table-responsive class="coins container-fluid bg-3 text-center" id="table-wrapper">
   <h2>Cryptocurrency</h2><br>
-  <div id="table-scroll">
+  <div id="table-scroll" style="align: center;">
     {% if all_tokens %}
       <table class="table" id="cryptotable">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Symbol</th>
-            <th>Rank</th>
-            <th>Price USD</th>
-            <th> Price BTC</th>
-            <th>24H Volume (USD)</th>
-            <th>Market Cap (USD)</th>
-            <th>Available Supply</th>
-            <th>Total Supply</th>
-            <th>% 1H</th>
-            <th>% 24H</th>
-            <th>% 7D</th>
+            <th class="col_name">Name</th>
+            <th class="col_name">Symbol</th>
+            <th class="col_name">Rank</th>
+            <th class="col_name">Price USD</th>
+            <th class="col_name"> Price BTC</th>
+            <th class="col_name">24H Volume (USD)</th>
+            <th class="col_name">Market Cap (USD)</th>
+            <th class="col_name">Available Supply</th>
+            <th class="col_name">Total Supply</th>
+            <th class="col_name">% 1H</th>
+            <th class="col_name">% 24H</th>
+            <th class="col_name">% 7D</th>
           </tr>
         </thead>
         <tbody>
@@ -117,15 +124,15 @@
               <td><a href="/cryptocurrency/{{token.tag}}">{{token.name}}</a></td>
               <td>{{token.symbol}}</td>
               <td>{{token.rank}}</td>
-              <td>{{token.price_usd}}</td>
-              <td>{{token.price_btc}}</td>
-              <td>{{token.volume_24h_usd}}</td>
-              <td>{{token.market_cap_usd}}</td>
-              <td>{{token.available_supply}}</td>
-              <td>{{token.total_supply}}</td>
-              <td>{{token.percent_change_1h}}</td>
-              <td>{{token.percent_change_24h}}</td>
-              <td>{{token.percent_change_7d}}</td>
+              <td>{% load humanize %}{{token.price_usd|intcomma}}</td>
+              <td>{% load humanize %}{{token.price_btc|intcomma}}</td>
+              <td>{% load humanize %}{{token.volume_24h_usd|intcomma}}</td>
+              <td>{% load humanize %}{{token.market_cap_usd|intcomma}}</td>
+              <td>{% load humanize %}{{token.available_supply|intcomma}}</td>
+              <td>{% load humanize %}{{token.total_supply|intcomma}}</td>
+              <td>{% load humanize %}{{token.percent_change_1h|intcomma}}</td>
+              <td>{% load humanize %}{{token.percent_change_24h|intcomma}}</td>
+              <td>{% load humanize %}{{token.percent_change_7d|intcomma}}</td>
             </tr>
           {% endfor%}
         </tbody>
