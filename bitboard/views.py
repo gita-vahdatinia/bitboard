@@ -7,14 +7,17 @@ from django.shortcuts import render
 from .models import Cryptocurrency
 from .services import add_tokens_to_database
 
+# /
 def index(request):
     return render(request, 'bitboard/index.html')
 
+# /cryptocurrency
 def cryptocurrency(request):
     add_tokens_to_database()
     all_tokens = Cryptocurrency.objects.all()
     return render(request, 'bitboard/cryptocurrency.html', {"all_tokens": all_tokens})
 
+# /cryptocurrency/bitcoin
 def token(request, token_tag):
     try:
         token = Cryptocurrency.objects.get(tag=token_tag)
