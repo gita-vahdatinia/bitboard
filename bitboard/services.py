@@ -69,3 +69,20 @@ def add_tokens_to_database():
                             percent_change_7d = token_percent_change_7d,
                             last_updated = token_last_updated
                             ).save()
+
+        # update token
+        else:
+
+            token = Cryptocurrency.objects.get(tag=token_tag)
+            token.rank = token_rank
+            token.price_usd = token_price_usd
+            token.price_btc = token_price_btc
+            token.volume_24h_usd = token_24h_volume_usd
+            token.market_cap_usd = token_market_cap_usd
+            token.available_supply = token_available_supply
+            token.total_supply = token_total_supply
+            token.percent_change_1h = token_percent_change_1h
+            token.percent_change_24h = token_percent_change_24h
+            token.percent_change_7d = token_percent_change_7d
+            token.last_updated = token_last_updated
+            token.save()

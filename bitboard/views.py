@@ -14,7 +14,7 @@ def index(request):
 # /cryptocurrency
 def cryptocurrency(request):
     add_tokens_to_database()
-    all_tokens = Cryptocurrency.objects.all()
+    all_tokens = Cryptocurrency.objects.all().order_by('rank')
     return render(request, 'bitboard/cryptocurrency.html', {"all_tokens": all_tokens})
 
 # /cryptocurrency/bitcoin
