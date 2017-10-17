@@ -48,34 +48,33 @@
   <div class="row content">
     <br>
 
-    <div class="col-sm-9">
+    <div class="col-sm-12">
       <div class="well">
-        <h4>Dashboard</h4>
-        <p>Some text..</p>
+        <h1>{{ token.symbol }} - {{ token.name }}</h1>
       </div>
       <div class="row">
         <div class="col-sm-3">
           <div class="well">
-            <h4>Users</h4>
-            <p>1 Million</p>
+            <h4>Rank</h4>
+            <p>{{ token.rank }}</p>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="well">
-            <h4>Pages</h4>
-            <p>100 Million</p>
+            <h4>Price (USD)</h4>
+            <p>${{ token.price_usd }}</p>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="well">
-            <h4>Sessions</h4>
-            <p>10 Million</p>
+            <h4>Price (BTC)</h4>
+            <p>{{ token.price_btc }}</p>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="well">
-            <h4>Bounce</h4>
-            <p>30%</p>
+            <h4>Available Supply</h4>
+            <p>{% load humanize %}{{ token.available_supply|intcomma }}</p>
           </div>
         </div>
       </div>
