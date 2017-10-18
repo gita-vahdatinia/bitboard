@@ -29,9 +29,21 @@
       overflow-x: auto;
     }
 
-    table {
-      overflow-y: scroll;
-      width: 20px
+    table thead tr{
+    display:block;
+    }
+
+    table th{
+      width:100px;//fixed width
+    }
+    table td{
+      width: 75px;
+    }
+
+    table  tbody{
+      display:block;
+      height:300px;
+      overflow:auto;
     }
 
     th {
@@ -46,6 +58,7 @@
 
     td {
       text-align: left;
+
     }
 
     #table-scroll {
