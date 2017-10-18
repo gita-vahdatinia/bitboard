@@ -14,8 +14,8 @@
       {
           $(".main-table").tablesorter();
           /*  header with scrolling function JS */
-          $(".main-table").clone(true).appendTo('#table-scroll .faux-table').addClass('clone');
-          $(".main-table.clone").clone(true).appendTo('#table-scroll .faux-table').addClass('clone2');
+          $(".main-table").clone(true).appendTo('#table-scroll .cryptotable').addClass('clone');
+          $(".main-table.clone").clone(true).appendTo('#table-scroll .cryptotable').addClass('clone2');
       }
   );
 
@@ -82,30 +82,30 @@
 
     	vertical-align: top;
     }
-    .faux-table table {
+    .cryptotable table {
     	position: absolute;
     	top: 0;
     	left: 0;
     	width: 100%;
     	pointer-events: none;
     }
-    .faux-table table + table {
+    .cryptotable table + table {
     	top: auto;
     	bottom: 0;
     }
-    .faux-table table tbody, .faux-table  tfoot {
+    .cryptotable table tbody, .cryptotable  tfoot {
     	visibility: hidden;
     	border-color: transparent;
     }
-    .faux-table table + table thead {
+    .cryptotable table + table thead {
     	visibility: hidden;
     	border-color: transparent;
     }
-    .faux-table table + table  tfoot{
+    .cryptotable table + table  tfoot{
     	visibility:visible;
     }
 
-    .faux-table {
+    .cryptotable {
     	position:absolute;
     	top:0;
     	right:0;
@@ -113,7 +113,7 @@
     	bottom:0;
     	overflow-y:scroll;
     }
-    .faux-table thead, .faux-table tfoot, .faux-table thead th, .faux-table tfoot th, .faux-table tfoot td {
+    .cryptotable thead, .cryptotable tfoot, .cryptotable thead th, .cryptotable tfoot th, .cryptotable tfoot td {
     	position:relative;
     	z-index:2;
     }
@@ -152,9 +152,9 @@
   </div>
 </div>
 <div id="table-scroll" class="table-scroll">
-  <div id="faux-table" class="faux-table" aria="hidden"></div>
+  <div id="cryptotable" class="cryptotable" aria="hidden"></div>
   <div class="table-wrap">
-    <table id="main-table cryptotable" class="main-table">
+    <table id="main-table " class="main-table">
 
     {% if all_tokens %}
 
