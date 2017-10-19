@@ -25,7 +25,6 @@
     }
 
     .coins {
-      padding-bottom: 100px;
       overflow-x: auto;
     }
 
@@ -54,9 +53,16 @@
       margin-top:18px;
     }
 
-    footer {
+    .footer {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      /*padding: 1rem;*/
+      padding-top: 25px;
+      padding-bottom: 25px;
       background-color: #f2f2f2;
-      padding: 25px;
+      text-align: center;
     }
 
     .col_name{
@@ -92,12 +98,11 @@
 
 <div class="jumbotron">
   <div class="container text-center">
-    <h1>BitBoard</h1>
+    <h1>Cryptocurrency</h1>
     <p>To The Moon</p>
   </div>
 </div>
 <div class="coins container-fluid bg-3 text-center" id="table-wrapper">
-  <h2>Cryptocurrency</h2><br>
   <div id="table-scroll" style="align: center;">
     {% if all_tokens %}
       <table class="table" id="cryptotable">
@@ -115,12 +120,17 @@
             <th class="col_name">% 1H</th>
             <th class="col_name">% 24H</th>
             <th class="col_name">% 7D</th>
+<!--
+            <th>Name</th>
+            <th>Symbol</th>
+            <th>Total Coin Supply</th> -->
+
           </tr>
         </thead>
         <tbody>
           {% for token in all_tokens %}
             <tr>
-              <td><a href="/cryptocurrency/{{token.tag}}">{{token.name}}</a></td>
+              <td><img src="{{token.image_url}}" height="25" width="25"><a href="/cryptocurrency/{{token.tag}}">  {{token.name}}</a></td>
               <td>{{token.symbol}}</td>
               <td>{{token.rank}}</td>
               <td>{% load humanize %}{{token.price_usd|intcomma}}</td>
@@ -133,6 +143,12 @@
               <td>{% load humanize %}{{token.percent_change_24h|intcomma}}</td>
               <td>{% load humanize %}{{token.percent_change_7d|intcomma}}</td>
             </tr>
+
+            <!-- <tr>
+              <td><img src="{{token.image_url}}" height="42" width="42">{{token.name}}</td>
+              <td>{{token.symbol}}</td>
+              <td>{{token.total_coin_supply}}</td>
+            </tr> -->
           {% endfor%}
         </tbody>
       </table>
@@ -142,9 +158,11 @@
   </div>
 </div>
 
-<footer class="footer container-fluid text-center">
-  <p>Copyright 2017 &copy;</p>
-</footer>
+<div class="footer">
+  <footer class="footer container-fluid text-center">
+    <p>Copyright 2017 &copy;</p>
+  </footer>
+</div>
 
 </body>
 </html>

@@ -1,11 +1,7 @@
 import requests
 import json
-from coinmarketcap import Market
 from .models import Cryptocurrency
-
-def get_tokens_api():
-    coinmarketcap = Market()
-    return coinmarketcap
+from .models import Cryptocompare
 
 def get_tokens():
     url = 'https://api.coinmarketcap.com/v1/ticker/'
@@ -30,6 +26,7 @@ def get_tokens():
         token_data['last_updated'] = token['last_updated']
         token_list.append(token_data)
     return token_list
+
 
 def add_tokens_to_database():
     token_list = get_tokens()
@@ -86,3 +83,71 @@ def add_tokens_to_database():
             token.percent_change_7d = token_percent_change_7d
             token.last_updated = token_last_updated
             token.save()
+
+def get_crypto_compare_coins():
+
+    url = 'https://www.cryptocompare.com/api/data/coinlist/'
+    r = requests.get(url)
+    cryptocurrency = r.json()
+
+    for index in cryptocurrency['Data']:
+
+        coin = cryptocurrency['Data'][index]
+
+        try:
+            coin['ImageUrl'] = 'https://www.cryptocompare.com' + coin['ImageUrl']
+        except:
+            continue
+
+
+        if( Cryptocurrency.objects.filter(symbol=coin['Symbol']).count() == 1 ):
+            token = Cryptocurrency.objects.get(symbol=coin['Symbol'])
+            token.image_url = coin['ImageUrl']
+            token.save()
+
+
+        # try:
+        #     float(coin['TotalCoinSupply'])
+        # except:
+        #     coin['TotalCoinSupply'] = -1
+
+        # url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + str(coin['Symbol']) + '&tsyms=BTC,USD'
+        # r = requests.get(url)
+        # price_data = r.json()
+
+        # if( not Cryptocompare.objects.filter(coin_id=coin['Id']).exists() ):
+        #
+        #     Cryptocompare(
+        #         coin_name=coin['CoinName'],
+        #         name=coin['Name'],
+        #         algorithm=coin['Algorithm'],
+        #         url=coin['Url'],
+        #         image_url=coin['ImageUrl'],
+        #         coin_id=coin['Id'],
+        #         proof_type=coin['ProofType'],
+        #         sort_order=coin['SortOrder'],
+        #         total_coin_supply=coin['TotalCoinSupply'],
+        #         full_name=coin['FullName'],
+        #         symbol=coin['Symbol'],
+        #         # usd_change_24_hours=price_data['RAW'][str(coin['Symbol'])]['USD']['CHANGE24HOUR'],
+        #         # percent_change_24_hours=price_data['RAW'][str(coin['Symbol'])]['USD']['CHANGEPCT24HOUR'],
+        #         # supply=price_data['RAW'][str(coin['Symbol'])]['USD']['SUPPLY'],
+        #         # market_cap_usd=price_data['RAW'][str(coin['Symbol'])]['USD']['MKTCAP']
+        #
+        #     ).save()
+        #
+        # else:
+        #
+        #     token = Cryptocompare.objects.get(coin['Id'])
+        #     token.coin_name = coin['CoinName']
+        #     token.name = coin['Name']
+        #     token.algorithm = coin['Algorithm']
+        #     token.url = coin['Url']
+        #     token.image_url = coin['ImageUrl']
+        #     token.coin_id = coin['Id']
+        #     token.proof_type = coin['ProofType']
+        #     token.sort_order = coin['SortOrder']
+        #     token.total_coin_supply = coin['TotalCoinSupply']
+        #     token.full_name = coin['FullName']
+        #     token.symbol = coin['Symbol']
+        #     token.save()
