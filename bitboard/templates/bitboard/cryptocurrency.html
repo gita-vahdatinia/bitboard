@@ -10,13 +10,30 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
   <script>
+
+
   $(document).ready(function()
       {
+
+
           $(".main-table").tablesorter();
           /*  header with scrolling function JS */
           $(".main-table").clone(true).appendTo('#table-scroll .cryptotable').addClass('clone');
           $(".main-table.clone").clone(true).appendTo('#table-scroll .cryptotable').addClass('clone2');
+
+          $('.search').on('keyup',function(){
+            var searchTerm = $(this).val().toLowerCase();
+            $('#main-table tbody tr').each(function(){
+              var lineStr = $(this).text().toLowerCase();
+              if(lineStr.indexOf(searchTerm) === -1){
+              $(this).hide();
+                }else{
+              $(this).show();
+            }
+          });
+        })
       }
+
   );
 
   </script>
@@ -150,10 +167,16 @@
     <h1>BitBoard</h1>
     <p>To The Moon</p>
   </div>
+
 </div>
+<div class="form-group pull-left">
+    <input type="text" class="search form-control" placeholder="Search ...">
+</div>
+
 <div id="table-scroll" class="table-scroll">
   <div id="cryptotable" class="cryptotable" aria="hidden"></div>
   <div class="table-wrap">
+
     <table id="main-table " class="main-table">
 
     {% if all_tokens %}
