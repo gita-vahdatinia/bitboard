@@ -10,11 +10,32 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
   <script>
+
+
   $(document).ready(function()
       {
-          $("#cryptotable").tablesorter();
+
+
+          $(".main-table").tablesorter();
+          /*  header with scrolling function JS */
+          $(".main-table").clone(true).appendTo('#table-scroll .cryptotable').addClass('clone');
+          $(".main-table.clone").clone(true).appendTo('#table-scroll .cryptotable').addClass('clone2');
+
+          $('.search').on('keyup',function(){
+            var searchTerm = $(this).val().toLowerCase();
+            $('#main-table tbody tr').each(function(){
+              var lineStr = $(this).text().toLowerCase();
+              if(lineStr.indexOf(searchTerm) === -1){
+              $(this).hide();
+                }else{
+              $(this).show();
+            }
+          });
+        })
       }
+
   );
+
   </script>
 
   <style>
@@ -28,15 +49,9 @@
       overflow-x: auto;
     }
 
-    table {
-      overflow-y: scroll;
-      width: 20px
-    }
-
     th {
       background-color: #4CAF50;
       color: white;
-
     }
 
     tr:hover {
@@ -45,12 +60,7 @@
 
     td {
       text-align: left;
-    }
 
-    #table-scroll {
-      height:400px;
-      overflow:auto;
-      margin-top:18px;
     }
 
     .footer {
@@ -68,12 +78,74 @@
     .col_name{
       cursor: pointer; cursor: hand;
     }
+/*CSS for header with scrolling */
+    .table-scroll {
+    	position: relative;
+    	max-width: 1280px;
+    	width:100%;
+    	margin: auto;
+    	display:table;
+    }
+    .table-wrap {
+    	width: 100%;
+    	display:block;
+    	height: 300px;
+    	overflow: auto;
+    	position:relative;
+    	z-index:1;
+    }
+    .table-scroll table {
+    	width: 100%;
+    	margin: auto;
+    	border-collapse: separate;
+    	border-spacing: 0;
+    }
+    .table-scroll th, .table-scroll td {
+    	padding: 5px 10px;
 
+    	vertical-align: top;
+    }
+    .cryptotable table {
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	width: 100%;
+    	pointer-events: none;
+    }
+    .cryptotable table + table {
+    	top: auto;
+    	bottom: 0;
+    }
+    .cryptotable table tbody, .cryptotable  tfoot {
+    	visibility: hidden;
+    	border-color: transparent;
+    }
+    .cryptotable table + table thead {
+    	visibility: hidden;
+    	border-color: transparent;
+    }
+    .cryptotable table + table  tfoot{
+    	visibility:visible;
+    }
+
+    .cryptotable {
+    	position:absolute;
+    	top:0;
+    	right:0;
+    	left:0;
+    	bottom:0;
+    	overflow-y:scroll;
+    }
+    .cryptotable thead, .cryptotable tfoot, .cryptotable thead th, .cryptotable tfoot th, .cryptotable tfoot td {
+    	position:relative;
+    	z-index:2;
+    }
   </style>
 </head>
 <body>
 
 <nav class="navbar navbar-inverse">
+
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -101,11 +173,27 @@
     <h1>Cryptocurrency</h1>
     <p>To The Moon</p>
   </div>
+
 </div>
-<div class="coins container-fluid bg-3 text-center" id="table-wrapper">
-  <div id="table-scroll" style="align: center;">
+<div class="form-group pull-left">
+    <input type="text" class="search form-control" placeholder="Search ...">
+</div>
+<!-- <<<<<<< HEAD -->
+<!-- <div class="coins container-fluid bg-3 text-center" id="table-wrapper">
+  <div id="table-scroll" style="align: center;"> -->
+<!-- ======= -->
+
+<div id="table-scroll" class="table-scroll">
+  <div id="cryptotable" class="cryptotable" aria="hidden"></div>
+  <div class="table-wrap">
+
+    <table id="main-table " class="main-table">
+
+<!-- >>>>>>> 8bd5de4b73e69e7cc812c4d2053d3e7f3a852f18 -->
     {% if all_tokens %}
-      <table class="table" id="cryptotable">
+
+
+
         <thead>
           <tr>
             <th class="col_name">Name</th>
@@ -155,8 +243,10 @@
     {% else %}
       <h3 style="text-align: right">No Tokens Available</h3>
     {% endif%}
-  </div>
+
 </div>
+</div>
+
 
 <div class="footer">
   <footer class="footer container-fluid text-center">
