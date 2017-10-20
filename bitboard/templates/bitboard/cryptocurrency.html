@@ -120,7 +120,7 @@
         <tbody>
           {% for token in all_tokens %}
             <tr>
-              <td><a href="/cryptocurrency/{{token.tag}}">{{token.name}}</a></td>
+              <td>  <img src="{{token.image_url}}" height="25" width="25"><a href="/cryptocurrency/{{token.tag}}">  <a href="/cryptocurrency/{{token.tag}}">{{token.name}}</a></td>
               <td>{{token.symbol}}</td>
               <td>{{token.rank}}</td>
               <td>{% load humanize %}{{token.price_usd|intcomma}}</td>

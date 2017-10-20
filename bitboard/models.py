@@ -20,6 +20,7 @@ class Cryptocurrency(models.Model):
     percent_change_24h = models.DecimalField(max_digits = 200, decimal_places = 2, null=True)
     percent_change_7d = models.DecimalField(max_digits = 200, decimal_places = 2, null=True)
     last_updated = models.IntegerField(null = True)
+    image_url = models.CharField(max_length = 200, null=True)
 
     def __str__(self):
         return self.tag

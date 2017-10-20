@@ -86,3 +86,24 @@ def add_tokens_to_database():
             token.percent_change_7d = token_percent_change_7d
             token.last_updated = token_last_updated
             token.save()
+
+def get_crypto_compare_coins():
+
+    url = 'https://www.cryptocompare.com/api/data/coinlist/'
+    r = requests.get(url)
+    cryptocurrency = r.json()
+
+    for index in cryptocurrency['Data']:
+
+        coin = cryptocurrency['Data'][index]
+
+        try:
+            coin['ImageUrl'] = 'https://www.cryptocompare.com' + coin['ImageUrl']
+        except:
+            continue
+
+
+        if( Cryptocurrency.objects.filter(symbol=coin['Symbol']).count() == 1 ):
+            token = Cryptocurrency.objects.get(symbol=coin['Symbol'])
+            token.image_url = coin['ImageUrl']
+            token.save()
