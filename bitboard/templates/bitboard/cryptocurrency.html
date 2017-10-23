@@ -61,6 +61,8 @@
 
     td {
       text-align: left;
+       max-width:139px;
+       word-wrap:break-word;
 
     }
 
@@ -177,7 +179,7 @@
   <div id="cryptotable" class="cryptotable" aria="hidden"></div>
   <div class="table-wrap">
 
-    <table id="main-table " class="main-table">
+    <table id="main-table " class="main-table" width="500">
 
     {% if all_tokens %}
 
@@ -189,7 +191,7 @@
             <th class="col_name">Symbol</th>
             <th class="col_name">Rank</th>
             <th class="col_name">Price USD</th>
-            <th class="col_name"> Price BTC</th>
+            <th class="col_name">Price BTC</th>
             <th class="col_name">24H Volume (USD)</th>
             <th class="col_name">Market Cap (USD)</th>
             <th class="col_name">Available Supply</th>
