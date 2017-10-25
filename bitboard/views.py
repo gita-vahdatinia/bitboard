@@ -13,6 +13,10 @@ from .services import get_crypto_compare_coins
 def index(request):
     return render(request, 'bitboard/index.html')
 
+# /news
+def news(request):
+    return render(request, 'bitboard/news.html')
+
 # /cryptocurrency
 def cryptocurrency(request):
     add_tokens_to_database()
