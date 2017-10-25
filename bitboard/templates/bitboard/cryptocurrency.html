@@ -7,34 +7,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="livesearch.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+
   <script>
+
+
 
 
   $(document).ready(function()
       {
+        //Table sorting fucntion
+        var options = {
+          valueNames: [ 'token_name', 'token_rank', 'token_symbol' ]
+        };
 
-
-          $(".main-table").tablesorter();
+        var userList = new List('searchtable', options);
           /*  header with scrolling function JS */
           $(".main-table").clone(true).appendTo('#table-scroll .cryptotable').addClass('clone');
           $(".main-table.clone").clone(true).appendTo('#table-scroll .cryptotable').addClass('clone2');
+        });
 
-          $('.search').on('keyup',function(){
-            var searchTerm = $(this).val().toLowerCase();
-            $('#main-table tbody tr').each(function(){
-              var lineStr = $(this).text().toLowerCase();
-              if(lineStr.indexOf(searchTerm) === -1){
-              $(this).hide();
-                }else{
-              $(this).show();
-            }
-          });
-        })
-      }
 
-  );
 
   </script>
 
@@ -60,6 +56,7 @@
 
     td {
       text-align: left;
+
 
     }
 
@@ -139,7 +136,23 @@
     .cryptotable thead, .cryptotable tfoot, .cryptotable thead th, .cryptotable tfoot th, .cryptotable tfoot td {
     	position:relative;
     	z-index:2;
+
     }
+    .cryptotable thead{
+      padding-bottom: 7%;
+    }
+    .search{
+      width: 100%;
+      border-radius: 5px;
+    }
+    .input:focus{
+      outline:none;
+    }
+    .list{
+      padding-top: 10%;
+    }
+
+
   </style>
 </head>
 <body>
@@ -175,14 +188,14 @@
   </div>
 
 </div>
-<div class="form-group pull-left">
-    <input type="text" class="search form-control" placeholder="Search ...">
-</div>
+
+
 <!-- <<<<<<< HEAD -->
 <!-- <div class="coins container-fluid bg-3 text-center" id="table-wrapper">
   <div id="table-scroll" style="align: center;"> -->
 <!-- ======= -->
-
+<div id="searchtable">
+  <input class="search" placeholder="Search" />
 <div id="table-scroll" class="table-scroll">
   <div id="cryptotable" class="cryptotable" aria="hidden"></div>
   <div class="table-wrap">
@@ -215,12 +228,12 @@
 
           </tr>
         </thead>
-        <tbody>
+        <tbody class="list">
           {% for token in all_tokens %}
             <tr>
-              <td><img src="{{token.image_url}}" height="25" width="25"><a href="/cryptocurrency/{{token.tag}}">  {{token.name}}</a></td>
-              <td>{{token.symbol}}</td>
-              <td>{{token.rank}}</td>
+              <td class="token_name"><img src="{{token.image_url}}" height="25" width="25"><a href="/cryptocurrency/{{token.tag}}">  {{token.name}}</a></td>
+              <td class="token_symbol">{{token.symbol}}</td>
+              <td class="token_rank">{{token.rank}}</td>
               <td>{% load humanize %}{{token.price_usd|intcomma}}</td>
               <td>{% load humanize %}{{token.price_btc|intcomma}}</td>
               <td>{% load humanize %}{{token.volume_24h_usd|intcomma}}</td>
@@ -243,16 +256,12 @@
     {% else %}
       <h3 style="text-align: right">No Tokens Available</h3>
     {% endif%}
-
 </div>
 </div>
-
-
-<div class="footer">
-  <footer class="footer container-fluid text-center">
-    <p>Copyright 2017 &copy;</p>
-  </footer>
 </div>
+
+
+
 
 </body>
 </html>
