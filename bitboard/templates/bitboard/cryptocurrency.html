@@ -25,9 +25,9 @@
         };
 
         var userList = new List('searchtable', options);
+          $(".main-table").tablesorter();
           /*  header with scrolling function JS */
-          $(".main-table").clone(true).appendTo('#table-scroll .cryptotable').addClass('clone');
-          $(".main-table.clone").clone(true).appendTo('#table-scroll .cryptotable').addClass('clone2');
+
         });
 
 
@@ -56,7 +56,6 @@
 
     td {
       text-align: left;
-
 
     }
 
@@ -136,23 +135,11 @@
     .cryptotable thead, .cryptotable tfoot, .cryptotable thead th, .cryptotable tfoot th, .cryptotable tfoot td {
     	position:relative;
     	z-index:2;
-
-    }
-    .cryptotable thead{
-      padding-bottom: 7%;
     }
     .search{
-      width: 100%;
-      border-radius: 5px;
+      width: 100%
+      border: 5px; 
     }
-    .input:focus{
-      outline:none;
-    }
-    .list{
-      padding-top: 10%;
-    }
-
-
   </style>
 </head>
 <body>
@@ -196,6 +183,7 @@
 <!-- ======= -->
 <div id="searchtable">
   <input class="search" placeholder="Search" />
+
 <div id="table-scroll" class="table-scroll">
   <div id="cryptotable" class="cryptotable" aria="hidden"></div>
   <div class="table-wrap">
