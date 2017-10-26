@@ -2,6 +2,34 @@ import requests
 import json
 from .models import Cryptocurrency
 from .models import Cryptocompare
+from .models import News
+import feedparser
+
+def rss_to_database():
+    rss_sources = [
+        'http://feeds.feedburner.com/CoinDesk',
+        'http://bitcoin.worldnewsoffice.com/rss/category/1']
+    for rss in rss_sources:
+        d = feedparser.parse(rss)
+        # print (d['feed']['title'], '|', d['feed']['description'], '|', d['feed']['link'] )
+        # print (d.feed.title)
+        # print (d.feed.link)
+        # print (d.feed.description)
+
+        # print ('---------------')
+        for x in range(0, len(d)):
+            # print ('Title:', d.entries[x].title)
+            # print ('Description:', d.entries[x].description)
+            # print ('Link:', d.entries[x].link)
+            # print ('---------------')
+            if( not News.objects.filter(title=d.entries[x].title).exists()):
+                News(
+                    title=d.entries[x].title,
+                    description=d.entries[x].description,
+                    link=d.entries[x].link
+                    ).save()
+
+        # print (d.namespaces)
 
 def get_tokens():
     url = 'https://api.coinmarketcap.com/v1/ticker/'
