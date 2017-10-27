@@ -5,7 +5,9 @@ from django.http import HttpResponse
 from django.http import Http404
 from django.shortcuts import render
 from .models import Cryptocurrency
+from .models import Cryptocompare
 from .services import add_tokens_to_database
+from .services import get_crypto_compare_coins
 
 # /
 def index(request):
@@ -14,6 +16,7 @@ def index(request):
 # /cryptocurrency
 def cryptocurrency(request):
     add_tokens_to_database()
+    get_crypto_compare_coins()
     all_tokens = Cryptocurrency.objects.all().order_by('rank')
     return render(request, 'bitboard/cryptocurrency.html', {"all_tokens": all_tokens})
 
