@@ -55,8 +55,11 @@
     }
 
     td {
-      text-align: left;
-
+       text-align: left;
+       max-width:8vw;
+       word-wrap:break-word;
+        
+       
     }
 
     .footer {
@@ -157,7 +160,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
-        <li><a href="#">News</a></li>
+        <li><a href="{% url 'news' %}">News</a></li>
         <li><a href="#">Following</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -188,7 +191,7 @@
   <div id="cryptotable" class="cryptotable" aria="hidden"></div>
   <div class="table-wrap">
 
-    <table id="main-table " class="main-table">
+    <table id="main-table " class="main-table" width="500">
 
 <!-- >>>>>>> 8bd5de4b73e69e7cc812c4d2053d3e7f3a852f18 -->
     {% if all_tokens %}
@@ -201,7 +204,7 @@
             <th class="col_name">Symbol</th>
             <th class="col_name">Rank</th>
             <th class="col_name">Price USD</th>
-            <th class="col_name"> Price BTC</th>
+            <th class="col_name">Price BTC</th>
             <th class="col_name">24H Volume (USD)</th>
             <th class="col_name">Market Cap (USD)</th>
             <th class="col_name">Available Supply</th>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% load humanize %}
 <html lang="en">
 <head>
   <title>Cryptocurrency | All Tokens</title>
@@ -34,7 +34,7 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
-          <li><a href="#">News</a></li>
+          <li><a href="{% url 'news' %}">News</a></li>
           <li><a href="#">Following</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -48,68 +48,59 @@
   <div class="row content">
     <br>
 
-    <div class="col-sm-12">
+    <div class="col-sm-10 col-sm-offset-1">
       <div class="well">
         <h1><img src="{{token.image_url}}" height="85" width="85">  {{ token.symbol }} - {{ token.name }}</h1>
       </div>
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="well">
             <h4>Rank</h4>
             <p>{{ token.rank }}</p>
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="well">
             <h4>Price (USD)</h4>
             <p>${{ token.price_usd }}</p>
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="well">
             <h4>Price (BTC)</h4>
-            <p>{{ token.price_btc }}</p>
+            <p>{{ token.price_btc|intcomma }}</p>
           </div>
         </div>
-        <div class="col-sm-3">
+        <!-- <div class="col-sm-3">
           <div class="well">
             <h4>Available Supply</h4>
             <p>{% load humanize %}{{ token.available_supply|intcomma }}</p>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="row">
         <div class="col-sm-4">
           <div class="well">
-            <p>Text</p>
-            <p>Text</p>
-            <p>Text</p>
+            <h4>Percent Change</h4>
+            <p>1 Hour =   {{ token.percent_change_1h }}%</p>
+            <p>24 Hours = {{ token.percent_change_24h }}%</p>
+            <p>7 Days =   {{ token.percent_change_7d }}%</p>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="well">
-            <p>Text</p>
-            <p>Text</p>
-            <p>Text</p>
+            <h4>Other Information</h4>
+            <p>24 Hour Volume = {{ token.volume_24h_usd|intcomma }}</p>
+            <p>Market Cap (USD) = {{ token.market_cap_usd|intcomma }}</p>
+            <br style="line-height:210%"/>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="well">
-            <p>Text</p>
-            <p>Text</p>
-            <p>Text</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-8">
-          <div class="well">
-            <p>Text</p>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <p>Text</p>
+            <h4>Currency Supply</h4>
+            <p>Total Supply = {{ token.total_supply|intcomma }}</p>
+            <p>Available Supply = {{ token.available_supply|intcomma }}</p>
+            <br style="line-height:210%"/>
           </div>
         </div>
       </div>
