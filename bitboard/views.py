@@ -6,12 +6,20 @@ from django.http import Http404
 from django.shortcuts import render
 from .models import Cryptocurrency
 from .models import Cryptocompare
+from .models import News
 from .services import add_tokens_to_database
 from .services import get_crypto_compare_coins
+from .services import rss_to_database
 
 # /
 def index(request):
     return render(request, 'bitboard/index.html')
+
+# /news
+def news(request):
+    rss_to_database()
+    all_news_feeds = News.objects.all()
+    return render(request, 'bitboard/news.html', {"all_news_feeds": all_news_feeds})
 
 # /cryptocurrency
 def cryptocurrency(request):

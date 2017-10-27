@@ -6,6 +6,10 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
 
     # /cryptocurrency/
+    url(r'^news/$', views.news, name='news'),
+
+
+    # /cryptocurrency/
     url(r'^cryptocurrency/$', views.cryptocurrency, name='cryptocurrency'),
 
     # /cryptocurrency/bitcoin/
