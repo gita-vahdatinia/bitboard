@@ -219,15 +219,9 @@
         <tbody class="list">
           {% for token in all_tokens %}
             <tr>
-<<<<<<< HEAD
               <td class="token_name"><img src="{{token.image_url}}" height="25" width="25"><a href="/cryptocurrency/{{token.tag}}">  {{token.name}}</a></td>
               <td class="token_symbol">{{token.symbol}}</td>
               <td class="token_rank">{{token.rank}}</td>
-=======
-              <td> <img src="{{token.image_url}}" height="25" width="25"><a href="/cryptocurrency/{{token.tag}}">{{token.name}}</a></td>
-              <td>{{token.symbol}}</td>
-              <td>{{token.rank}}</td>
->>>>>>> 41c610d4d547cefd48ce08da9755dc9b19ee3d45
               <td>{% load humanize %}{{token.price_usd|intcomma}}</td>
               <td>{% load humanize %}{{token.price_btc|intcomma}}</td>
               <td>{% load humanize %}{{token.volume_24h_usd|intcomma}}</td>
