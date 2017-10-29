@@ -44,7 +44,50 @@
     td {
       text-align: left;
     }
-
+    .nav2 ul {
+      list-style: none;
+      background-color: #000000;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+    .nav2 li {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.0em;
+      line-height: 40px;
+      height: 40px;
+      border-bottom: 1px solid #888;
+    }
+    .nav2 a {
+      text-decoration: none;
+      color: #fff;
+      display: block;
+      transition: .3s background-color;
+    }
+ 
+    .nav2 a:hover {
+      background-color: #005f5f;
+    }
+ 
+    .nav2 a.active {
+      background-color: #fff;
+      color: #444;
+      cursor: default;
+    }
+ 
+    .nav2 li {
+      width: 120px;
+      border-bottom: none;
+      height: 50px;
+      line-height: 50px;
+      font-size: 1.4em;
+    }
+ 
+    /* Option 1 - Display Inline */
+    .nav2 li {
+      display: inline-block;
+      margin-right: -4px;
+    }
     #table-scroll {
       height: 400px;
       overflow: auto;
@@ -52,13 +95,14 @@
     }
 
     .footer {
-      position: absolute;
+      position: fixed;
       right: 0;
       bottom: 0;
       left: 0;
+      height: ---;
       /*padding: 1rem;*/
-      padding-top: 25px;
-      padding-bottom: 25px;
+      padding-top: 10px;
+      padding-bottom: 0px;
       background-color: #f2f2f2;
       text-align: center;
     }
@@ -101,6 +145,19 @@
       <p>To The Moon</p>
     </div>
   </div>
+<body class="news">
+  <header>
+    <div class="nav2">
+      <ul>
+        <li class="Recent"><a class="active" href="#">Recent</a></li>
+        <li class="Popular"><a href="#">Popular</a></li>
+        <li class="Bitcoin"><a href="#">Bitcoin</a></li>
+        <li class="Ethereum"><a href="#">Ethereum</a></li>
+        <li class="Litecoin"><a href="#">Litecoin</a></li>
+      </ul>
+    </div>
+  </header>
+</body>
   <div class="coins container-fluid bg-3 text-center" id="table-wrapper">
     <div id="table-scroll" style="align: center;">
       {% if all_news_feeds %}
