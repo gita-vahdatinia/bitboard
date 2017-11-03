@@ -14,32 +14,6 @@
     $(document).ready(function() {
       $("#cryptotable").tablesorter();
     });
-
-    function opentab(tabname, elmnt) {
-    // Hide all elements with class="tabcontent" by default */
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Remove the background color of all tablinks/buttons
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
-    }
-
-    // Show the specific tab content
-    document.getElementById(tabname).style.display = "block";
-
-    // Add the specific color to the button used to open the tab content
-    elmnt.style.backgroundColor = color;
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-
-
   </script>
 
   <style>
@@ -93,15 +67,6 @@ document.getElementById("defaultOpen").click();
       cursor: pointer;
       cursor: hand;
     }
-    .tabs{
-      align: center;
-
-    }
-    .tablinks{
-      text-align: center;
-    }
-
-
   </style>
 </head>
 
@@ -121,6 +86,14 @@ document.getElementById("defaultOpen").click();
         <ul class="nav navbar-nav">
           <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
           <li><a href="{% url 'news' %}">News</a></li>
+          <button class="dropbtn">Dropped News
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'recent' %}">Recent</a>
+            <a href="{% url 'popular' %}">Popular</a>
+            <a href="{}% url 'coins' %}">Coins</a>
+          </div>
           <li><a href="#">Following</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -136,17 +109,7 @@ document.getElementById("defaultOpen").click();
       <p>To The Moon</p>
     </div>
   </div>
-  <div class="tabs">
-
-  <button class="tablink" onclick="opentab('recent', this)" id="defaultOpen">recent</button>
-  <button class="tablink" onclick="opentab('popular', this)">popular</button>
-  <button class="tablink" onclick="opentab('bitcoin', this)">bitcoin</button>
-  <button class="tablink" onclick="opentab('ethereum', this)">ethereum</button>
-  <button class="tablink" onclick="opentab('dogecoin', this)">dogecoin</button>
-</div>
   <div class="coins container-fluid bg-3 text-center" id="table-wrapper">
-    <div id="recent" class="tabcontent">
-
     <div id="table-scroll" style="align: center;">
       {% if all_news_feeds %}
       <table class="table" id="cryptotable">
@@ -170,30 +133,6 @@ document.getElementById("defaultOpen").click();
       {% else %}
       <h3 style="text-align: right">No News Available</h3> {% endif%}
     </div>
-
-  </div>
-
-  <div id="popular" class="tabcontent">
-    <p>
-      Just some random shit on what is popular
-    </p>
-  </div>
-  <div id="bitcoin" class="tabcontent">
-    <p>
-      Just some random shit on what is bitcoin
-    </p>
-  </div>
-  <div id="ethereum" class="tabcontent">
-    <p>
-      Just some random shit about that good good ethereum
-    </p>
-  </div>
-  <div id="dogecoin" class="tabcontent">
-    <p>
-      Just some random shit dogecoin
-    </p>
-  </div>
-
   </div>
 
   <div class="footer">

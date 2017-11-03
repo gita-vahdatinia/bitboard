@@ -6,9 +6,11 @@ from .models import News
 import feedparser
 
 def rss_to_database():
-    rss_sources = [
+    rss_sources = [[
         'http://feeds.feedburner.com/CoinDesk',
-        'http://bitcoin.worldnewsoffice.com/rss/category/1']
+        'http://bitcoin.worldnewsoffice.com/rss/category/1'],
+        [
+        'https://news.google.com/news/rss/search/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us']]
     for rss in rss_sources:
         d = feedparser.parse(rss)
         # print (d['feed']['title'], '|', d['feed']['description'], '|', d['feed']['link'] )
