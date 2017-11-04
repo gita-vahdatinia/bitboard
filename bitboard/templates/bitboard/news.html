@@ -32,8 +32,6 @@
     // Show the specific tab content
     document.getElementById(tabname).style.display = "block";
 
-    // Add the specific color to the button used to open the tab content
-    elmnt.style.backgroundColor = color;
 }
 
 // Get the element with id="defaultOpen" and click on it
@@ -72,6 +70,26 @@ document.getElementById("defaultOpen").click();
     }
 
     #table-scroll {
+      height: 400px;
+      overflow: auto;
+      margin-top: 18px;
+    }
+    #table-scroll_2 {
+      height: 400px;
+      overflow: auto;
+      margin-top: 18px;
+    }
+    #table-scroll_3 {
+      height: 400px;
+      overflow: auto;
+      margin-top: 18px;
+    }
+    #table-scroll_4 {
+      height: 400px;
+      overflow: auto;
+      margin-top: 18px;
+    }
+    #table-scroll_5 {
       height: 400px;
       overflow: auto;
       margin-top: 18px;
@@ -148,7 +166,7 @@ document.getElementById("defaultOpen").click();
     <div id="recent" class="tabcontent">
 
     <div id="table-scroll" style="align: center;">
-      {% if all_news_feeds %}
+      {% if recent_news %}
       <table class="table" id="cryptotable">
         <thead>
           <tr>
@@ -158,7 +176,7 @@ document.getElementById("defaultOpen").click();
           </tr>
         </thead>
         <tbody>
-          {% for news in all_news_feeds %}
+          {% for news in recent_news %}
           <tr>
             <td style="font-weight: bold;">{{news.title}}</td>
             <td>{{news.description}}</td>
@@ -170,30 +188,108 @@ document.getElementById("defaultOpen").click();
       {% else %}
       <h3 style="text-align: right">No News Available</h3> {% endif%}
     </div>
-
   </div>
 
   <div id="popular" class="tabcontent">
-    <p>
-      Just some random shit on what is popular
-    </p>
+    <div id="table-scroll_2" style="align: center;">
+      {% if popular_news %}
+      <table class="table">
+        <thead>
+          <tr>
+            <td style="font-weight: bold;">Title</td>
+            <td style="font-weight: bold;">Description</td>
+            <td style="font-weight: bold;">Link</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for news in popular_news %}
+          <tr>
+            <td style="font-weight: bold;">{{news.title}}</td>
+            <td>{{news.description}}</td>
+            <td><a href="{{news.link}}">{{news.link}}</a></td>
+          </tr>
+          {% endfor%}
+        </tbody>
+      </table>
+      {% else %}
+      <h3 style="text-align: right">No News Available</h3> {% endif%}
+    </div>
   </div>
   <div id="bitcoin" class="tabcontent">
-    <p>
-      Just some random shit on what is bitcoin
-    </p>
+    <div id="table-scroll_3" style="align: center;">
+      {% if bitcoin_news %}
+      <table class="table">
+        <thead>
+          <tr>
+            <td style="font-weight: bold;">Title</td>
+            <td style="font-weight: bold;">Description</td>
+            <td style="font-weight: bold;">Link</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for news in bitcoin_news %}
+          <tr>
+            <td style="font-weight: bold;">{{news.title}}</td>
+            <td>{{news.description}}</td>
+            <td><a href="{{news.link}}">{{news.link}}</a></td>
+          </tr>
+          {% endfor%}
+        </tbody>
+      </table>
+      {% else %}
+      <h3 style="text-align: right">No News Available</h3> {% endif%}
+    </div>
+  </div>
   </div>
   <div id="ethereum" class="tabcontent">
-    <p>
-      Just some random shit about that good good ethereum
-    </p>
+    <div id="table-scroll_4" style="align: center;">
+      {% if ethereum_news %}
+      <table class="table">
+        <thead>
+          <tr>
+            <td style="font-weight: bold;">Title</td>
+            <td style="font-weight: bold;">Description</td>
+            <td style="font-weight: bold;">Link</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for news in ethereum_news %}
+          <tr>
+            <td style="font-weight: bold;">{{news.title}}</td>
+            <td>{{news.description}}</td>
+            <td><a href="{{news.link}}">{{news.link}}</a></td>
+          </tr>
+          {% endfor%}
+        </tbody>
+      </table>
+      {% else %}
+      <h3 style="text-align: right">No News Available</h3> {% endif%}
+    </div>
   </div>
   <div id="dogecoin" class="tabcontent">
-    <p>
-      Just some random shit dogecoin
-    </p>
-  </div>
-
+    <div id="table-scroll_5" style="align: center;">
+      {% if dogecoin_news %}
+      <table class="table">
+        <thead>
+          <tr>
+            <td style="font-weight: bold;">Title</td>
+            <td style="font-weight: bold;">Description</td>
+            <td style="font-weight: bold;">Link</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for news in dogecoin_news %}
+          <tr>
+            <td style="font-weight: bold;">{{news.title}}</td>
+            <td>{{news.description}}</td>
+            <td><a href="{{news.link}}">{{news.link}}</a></td>
+          </tr>
+          {% endfor%}
+        </tbody>
+      </table>
+      {% else %}
+      <h3 style="text-align: right">No News Available</h3> {% endif%}
+    </div>
   </div>
 
   <div class="footer">

@@ -18,13 +18,19 @@ def index(request):
 # /news
 def news(request):
     rss_to_database()
-    all_news_feeds = News.objects.all()
-    return render(request, 'bitboard/news.html', {"all_news_feeds": all_news_feeds})
+    recent_news = News.objects.filter(tag='recent')
+    popular_news = News.objects.filter(tag='popular')
+    bitcoin_news = News.objects.filter(tag='bitcoin')
+    ethereum_news = News.objects.filter(tag='ethereum')
+    dogecoin_news = News.objects.filter(tag='dogecoin')
+    return render(request, 'bitboard/news.html', {
+    'popular_news': popular_news, 'recent_news': recent_news, 'bitcoin_news': bitcoin_news,
+     'ethereum_news': ethereum_news, 'dogecoin_news': dogecoin_news})
 
 # /cryptocurrency
 def cryptocurrency(request):
-    #add_tokens_to_database()
-#    get_crypto_compare_coins()
+    add_tokens_to_database()
+    get_crypto_compare_coins()
     all_tokens = Cryptocurrency.objects.all().order_by('rank')
     return render(request, 'bitboard/cryptocurrency.html', {"all_tokens": all_tokens})
 

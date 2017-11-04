@@ -6,32 +6,47 @@ from .models import News
 import feedparser
 
 def rss_to_database():
-    rss_sources = [[
-        'http://feeds.feedburner.com/CoinDesk',
-        'http://bitcoin.worldnewsoffice.com/rss/category/1'],
+    rss_sources = {'recent':
+        ['http://feeds.feedburner.com/CoinDesk',
+        'http://bitcoin.worldnewsoffice.com/rss/category/1',
+        # 'https://cointelegraph.com/rss',
+        # 'http://www.newsbtc.com/feed/'
+        ],
+        'popular':
         [
-        'https://news.google.com/news/rss/search/section/q/bitcoin/bitcoin?hl=en&gl=US&ned=us']]
-    for rss in rss_sources:
-        d = feedparser.parse(rss)
-        # print (d['feed']['title'], '|', d['feed']['description'], '|', d['feed']['link'] )
-        # print (d.feed.title)
-        # print (d.feed.link)
-        # print (d.feed.description)
 
-        # print ('---------------')
-        for x in range(0, len(d)):
-            # print ('Title:', d.entries[x].title)
-            # print ('Description:', d.entries[x].description)
-            # print ('Link:', d.entries[x].link)
-            # print ('---------------')
-            if( not News.objects.filter(title=d.entries[x].title).exists()):
-                News(
-                    title=d.entries[x].title,
-                    description=d.entries[x].description,
-                    link=d.entries[x].link
-                    ).save()
 
-        # print (d.namespaces)
+        ],
+        'ethereum':
+        [
+         'https://www.ethnews.com/rss.xml',
+        ],
+        'bitcoin':
+        [
+         'http://bitcoin.worldnewsoffice.com/rss/category/1/',
+        # 'http://feed.informer.com/digests/I2GGLAVR70/feeder.rss',
+         'http://www.newsbtc.com/feed/'
+        ],
+        'dogecoin':
+        [
+         'https://www.reddit.com/r/dogecoin/.rss'
+        ]
+        }
+    tags = ['recent', 'popular', 'ethereum', 'bitcoin','dogecoin']
+    for t in tags:
+        for rss in rss_sources[t]:
+            d = feedparser.parse(rss)
+
+            for x in range(0, len(d['entries'])):
+                if( not News.objects.filter(title=d.entries[x].title).exists()):
+                    News(
+                        tag = t,
+                        title=d.entries[x].title,
+                        description=d.entries[x].description,
+                        link=d.entries[x].link
+                        ).save()
+
+            # print (d.namespaces)
 
 def get_tokens():
     url = 'https://api.coinmarketcap.com/v1/ticker/'
