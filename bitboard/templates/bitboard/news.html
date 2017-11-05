@@ -16,28 +16,26 @@
     });
 
     function opentab(tabname, elmnt) {
-    // Hide all elements with class="tabcontent" by default */
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
+      // Hide all elements with class="tabcontent" by default */
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
-    }
+      }
 
-    // Remove the background color of all tablinks/buttons
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < tablinks.length; i++) {
+      // Remove the background color of all tablinks/buttons
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
         tablinks[i].style.backgroundColor = "";
+      }
+
+      // Show the specific tab content
+      document.getElementById(tabname).style.display = "block";
+
     }
 
-    // Show the specific tab content
-    document.getElementById(tabname).style.display = "block";
-
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-
-
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
   </script>
 
   <style>
@@ -51,6 +49,7 @@ document.getElementById("defaultOpen").click();
     }
 
     table {
+      /*margin-left: 10%;*/
       overflow-y: scroll;
       width: 20px
     }
@@ -71,24 +70,29 @@ document.getElementById("defaultOpen").click();
 
     #table-scroll {
       height: 400px;
+      color: #000000;
       overflow: auto;
       margin-top: 18px;
     }
+
     #table-scroll_2 {
       height: 400px;
       overflow: auto;
       margin-top: 18px;
     }
+
     #table-scroll_3 {
       height: 400px;
       overflow: auto;
       margin-top: 18px;
     }
+
     #table-scroll_4 {
       height: 400px;
       overflow: auto;
       margin-top: 18px;
     }
+
     #table-scroll_5 {
       height: 400px;
       overflow: auto;
@@ -111,15 +115,30 @@ document.getElementById("defaultOpen").click();
       cursor: pointer;
       cursor: hand;
     }
-    .tabs{
-      align: center;
 
-    }
-    .tablinks{
+    .tabs {
+      /*justify-content: center;*/
+      align-content: center;
       text-align: center;
     }
 
+    .tablinks {
+      text-align: center;
+    }
 
+    .tablink {
+      background-color: #f2f2f2;
+      border: none;
+      color: black;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      justify-content: center;
+    }
   </style>
 </head>
 
@@ -156,90 +175,90 @@ document.getElementById("defaultOpen").click();
   </div>
   <div class="tabs">
 
-  <button class="tablink" onclick="opentab('recent', this)" id="defaultOpen">recent</button>
-  <button class="tablink" onclick="opentab('popular', this)">popular</button>
-  <button class="tablink" onclick="opentab('bitcoin', this)">bitcoin</button>
-  <button class="tablink" onclick="opentab('ethereum', this)">ethereum</button>
-  <button class="tablink" onclick="opentab('dogecoin', this)">dogecoin</button>
-</div>
+    <button class="tablink" onclick="opentab('recent', this)" id="defaultOpen">recent</button>
+    <button class="tablink" onclick="opentab('popular', this)">popular</button>
+    <button class="tablink" onclick="opentab('bitcoin', this)">bitcoin</button>
+    <button class="tablink" onclick="opentab('ethereum', this)">ethereum</button>
+    <button class="tablink" onclick="opentab('dogecoin', this)">dogecoin</button>
+  </div>
   <div class="coins container-fluid bg-3 text-center" id="table-wrapper">
     <div id="recent" class="tabcontent">
 
-    <div id="table-scroll" style="align: center;">
-      {% if recent_news %}
-      <table class="table" id="cryptotable">
-        <thead>
-          <tr>
-            <td style="font-weight: bold;">Title</td>
-            <td style="font-weight: bold;">Description</td>
-            <td style="font-weight: bold;">Link</td>
-          </tr>
-        </thead>
-        <tbody>
-          {% for news in recent_news %}
-          <tr>
-            <td style="font-weight: bold;">{{news.title}}</td>
-            <td>{{news.description}}</td>
-            <td><a href="{{news.link}}">{{news.link}}</a></td>
-          </tr>
-          {% endfor%}
-        </tbody>
-      </table>
-      {% else %}
-      <h3 style="text-align: right">No News Available</h3> {% endif%}
+      <div id="table-scroll" style="align: center;">
+        {% if recent_news %}
+        <table class="table" id="cryptotable">
+          <thead>
+            <tr>
+              <td style="font-weight: bold;">Title</td>
+              <td style="font-weight: bold;">Description</td>
+              <td style="font-weight: bold;">Link</td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for news in recent_news %}
+            <tr>
+              <td style="font-weight: bold;">{{news.title}}</td>
+              <td>{{news.description}}</td>
+              <td><a href="{{news.link}}">{{news.link}}</a></td>
+            </tr>
+            {% endfor%}
+          </tbody>
+        </table>
+        {% else %}
+        <h3 style="text-align: right">No News Available</h3> {% endif%}
+      </div>
     </div>
-  </div>
 
-  <div id="popular" class="tabcontent">
-    <div id="table-scroll_2" style="align: center;">
-      {% if popular_news %}
-      <table class="table">
-        <thead>
-          <tr>
-            <td style="font-weight: bold;">Title</td>
-            <td style="font-weight: bold;">Description</td>
-            <td style="font-weight: bold;">Link</td>
-          </tr>
-        </thead>
-        <tbody>
-          {% for news in popular_news %}
-          <tr>
-            <td style="font-weight: bold;">{{news.title}}</td>
-            <td>{{news.description}}</td>
-            <td><a href="{{news.link}}">{{news.link}}</a></td>
-          </tr>
-          {% endfor%}
-        </tbody>
-      </table>
-      {% else %}
-      <h3 style="text-align: right">No News Available</h3> {% endif%}
+    <div id="popular" class="tabcontent">
+      <div id="table-scroll_2" style="align: center;">
+        {% if popular_news %}
+        <table class="table">
+          <thead>
+            <tr>
+              <td style="font-weight: bold;">Title</td>
+              <td style="font-weight: bold;">Description</td>
+              <td style="font-weight: bold;">Link</td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for news in popular_news %}
+            <tr>
+              <td style="font-weight: bold;">{{news.title}}</td>
+              <td>{{news.description}}</td>
+              <td><a href="{{news.link}}">{{news.link}}</a></td>
+            </tr>
+            {% endfor%}
+          </tbody>
+        </table>
+        {% else %}
+        <h3 style="text-align: right">No News Available</h3> {% endif%}
+      </div>
     </div>
-  </div>
-  <div id="bitcoin" class="tabcontent">
-    <div id="table-scroll_3" style="align: center;">
-      {% if bitcoin_news %}
-      <table class="table">
-        <thead>
-          <tr>
-            <td style="font-weight: bold;">Title</td>
-            <td style="font-weight: bold;">Description</td>
-            <td style="font-weight: bold;">Link</td>
-          </tr>
-        </thead>
-        <tbody>
-          {% for news in bitcoin_news %}
-          <tr>
-            <td style="font-weight: bold;">{{news.title}}</td>
-            <td>{{news.description}}</td>
-            <td><a href="{{news.link}}">{{news.link}}</a></td>
-          </tr>
-          {% endfor%}
-        </tbody>
-      </table>
-      {% else %}
-      <h3 style="text-align: right">No News Available</h3> {% endif%}
+    <div id="bitcoin" class="tabcontent">
+      <div id="table-scroll_3" style="align: center;">
+        {% if bitcoin_news %}
+        <table class="table">
+          <thead>
+            <tr>
+              <td style="font-weight: bold;">Title</td>
+              <td style="font-weight: bold;">Description</td>
+              <td style="font-weight: bold;">Link</td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for news in bitcoin_news %}
+            <tr>
+              <td style="font-weight: bold;">{{news.title}}</td>
+              <td>{{news.description}}</td>
+              <td><a href="{{news.link}}">{{news.link}}</a></td>
+            </tr>
+            {% endfor%}
+          </tbody>
+        </table>
+        {% else %}
+        <h3 style="text-align: right">No News Available</h3> {% endif%}
+      </div>
     </div>
-  </div>
   </div>
   <div id="ethereum" class="tabcontent">
     <div id="table-scroll_4" style="align: center;">
