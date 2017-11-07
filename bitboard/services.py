@@ -1,35 +1,38 @@
 import requests
 import json
+import re
 from .models import Cryptocurrency
 from .models import Cryptocompare
 from .models import News
 import feedparser
 
+
+# to remove the html tags on the description and titles of
+# links provided in rss_to_database
+TAG_RE = re.compile(r'<[^>]+>')
+# characters to remove <p><sub><i>-- Delivered by <a href="http://feed43.com/">Feed43</a> service</i></sub></p>
+def remove_tags(text):
+    return TAG_RE.sub('', text)
+# feeds to add to the table
 def rss_to_database():
     rss_sources = {'recent':
         ['http://feeds.feedburner.com/CoinDesk',
         'http://bitcoin.worldnewsoffice.com/rss/category/1',
-        # 'https://cointelegraph.com/rss',
-        # 'http://www.newsbtc.com/feed/'
+        'http://feed43.com/7570437205278443.xml'
+
         ],
         'popular':
         [
-
-
         ],
         'ethereum':
-        [
-         'https://www.ethnews.com/rss.xml',
+        ['http://feed43.com/7686530105373765.xml',
         ],
         'bitcoin':
         [
-         'http://bitcoin.worldnewsoffice.com/rss/category/1/',
-        # 'http://feed.informer.com/digests/I2GGLAVR70/feeder.rss',
-         'http://www.newsbtc.com/feed/'
-        ],
+         'http://feed43.com/4124842572635051.xml'],
         'dogecoin':
         [
-         'https://www.reddit.com/r/dogecoin/.rss'
+         'http://feed43.com/0788173065157115.xml'
         ]
         }
     tags = ['recent', 'popular', 'ethereum', 'bitcoin','dogecoin']
@@ -41,8 +44,8 @@ def rss_to_database():
                 if( not News.objects.filter(title=d.entries[x].title).exists()):
                     News(
                         tag = t,
-                        title=d.entries[x].title,
-                        description=d.entries[x].description,
+                        title=(d.entries[x].title),
+                        description=(d.entries[x].description),
                         link=d.entries[x].link
                         ).save()
 
