@@ -41,3 +41,6 @@ def token(request, token_tag):
     except Cryptocurrency.DoesNotExist:
         raise Http404( token_tag + " does not exist")
     return render(request, 'bitboard/token.html', {"token": token})
+
+def profile(request):
+    return render(request, 'bitboard/profile.html')
