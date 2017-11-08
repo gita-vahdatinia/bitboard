@@ -10,26 +10,32 @@ import feedparser
 # to remove the html tags on the description and titles of
 # links provided in rss_to_database
 TAG_RE = re.compile(r'<[^>]+>')
-# characters to remove <p><sub><i>-- Delivered by <a href="http://feed43.com/">Feed43</a> service</i></sub></p>
+
 def remove_tags(text):
     return TAG_RE.sub('', text)
-# feeds to add to the table
+
 def rss_to_database():
     rss_sources = {'recent':
         ['http://feeds.feedburner.com/CoinDesk',
-        'http://bitcoin.worldnewsoffice.com/rss/category/1',
+        # 'http://bitcoin.worldnewsoffice.com/rss/category/1',
         'http://feed43.com/7570437205278443.xml'
 
+        # 'https://cointelegraph.com/rss',
+        # 'http://www.newsbtc.com/feed/'
         ],
         'popular':
         [
+
+
         ],
         'ethereum':
-        ['http://feed43.com/7686530105373765.xml',
+        ['http://feed43.com/5467350176171842.xml',
+
         ],
         'bitcoin':
         [
-         'http://feed43.com/4124842572635051.xml'],
+          'http://feed43.com/4124842572635051.xml'
+         ],
         'dogecoin':
         [
          'http://feed43.com/0788173065157115.xml'
@@ -42,10 +48,12 @@ def rss_to_database():
 
             for x in range(0, len(d['entries'])):
                 if( not News.objects.filter(title=d.entries[x].title).exists()):
+                    desc1 = d.entries[x].description
+                    desc2 = re.sub(r'''(.*)<p><sub><i>-- Delivered by <a href="http://feed43.com/">Feed43</a> service</i></sub></p>''',r'\1',desc1)
                     News(
                         tag = t,
                         title=(d.entries[x].title),
-                        description=(d.entries[x].description),
+                        description=desc2,
                         link=d.entries[x].link
                         ).save()
 
