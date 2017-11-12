@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, name='login'),
 
     # /logout
-    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^logout/$', auth_views.logout, {'template_name': 'logout.html'}, name='logout'),
 
     # /signup
     url(r'^signup/$', bit_views.signup, name='signup'),
