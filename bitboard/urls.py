@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from . import views
 from django.contrib.auth import views as auth_views
+from bitboard import views as bit_views
 
 
 
@@ -19,9 +20,12 @@ urlpatterns = [
     # /cryptocurrency/bitcoin/
     url(r'^(cryptocurrency/)(?P<token_tag>[A-Za-z0-9_-]+)/$', views.token, name='token'),
 
-    # login stuff
+    # /login
     url(r'^login/$', auth_views.login, name='login'),
 
+    # /logout
     url(r'^logout/$', auth_views.logout, name='logout'),
 
+    # /signup
+    url(r'^signup/$', bit_views.signup, name='signup'),
 ]
