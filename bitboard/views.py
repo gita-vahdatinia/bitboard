@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.http import Http404
 from django.shortcuts import render
@@ -10,6 +10,8 @@ from .models import News
 from .services import add_tokens_to_database
 from .services import get_crypto_compare_coins
 from .services import rss_to_database
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 
 # /
 def index(request):
@@ -42,5 +44,21 @@ def token(request, token_tag):
         raise Http404( token_tag + " does not exist")
     return render(request, 'bitboard/token.html', {"token": token})
 
+<<<<<<< HEAD
 def profile(request):
     return render(request, 'bitboard/profile.html')
+=======
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('cryptocurrency')
+    else:
+        form = UserCreationForm()
+    return render(request, 'bitboard/signup.html', {'form': form})
+>>>>>>> ecb7fb5b31b8436f6bf463df6b7e9a84e93ab778
