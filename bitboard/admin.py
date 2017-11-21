@@ -7,6 +7,8 @@ from django.contrib import admin\
 
 from .models import Cryptocurrency
 from .models import Cryptocompare
+from .models import News
 
 admin.site.register(Cryptocurrency)
 admin.site.register(Cryptocompare)
+admin.site.register(News)
