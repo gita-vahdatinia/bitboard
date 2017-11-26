@@ -44,10 +44,9 @@ def token(request, token_tag):
         raise Http404( token_tag + " does not exist")
     return render(request, 'bitboard/token.html', {"token": token})
 
-<<<<<<< HEAD
 def profile(request):
     return render(request, 'bitboard/profile.html')
-=======
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -61,4 +60,3 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'bitboard/signup.html', {'form': form})
->>>>>>> ecb7fb5b31b8436f6bf463df6b7e9a84e93ab778
