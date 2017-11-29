@@ -15,7 +15,7 @@
 
 
     $(document).ready(function() {
-        // Get the element with id="defaultOpen" and click on it  
+        // Get the element with id="defaultOpen" and click on it
       document.getElementById("defaultOpen").click();
       $("#cryptotable").tablesorter();
     });
@@ -173,7 +173,7 @@
           <li><a href="#">Following</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="signup.html"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
         </ul>
       </div>
     </div>
@@ -202,6 +202,7 @@
         <table class="table" id="cryptotable">
           <thead>
             <tr>
+              <td style="font-weight: bold;">Read Later</td>
               <td style="font-weight: bold;">Title</td>
               <td style="font-weight: bold;">Description</td>
               <td style="font-weight: bold;">Link</td>
@@ -210,6 +211,9 @@
           <tbody>
             {% for news in recent_news %}
             <tr>
+              <td>
+                <input type="image" src="https://image.flaticon.com/icons/png/128/109/109433.png" height="25" width="25"
+                name="add_news" class="watch_news" /></td>
               <td style="font-weight: bold;">{{news.title}}</td>
               <td>{{news.description}}</td>
               <td><a href="{{news.link}}">{{news.link}}</a></td>
@@ -221,6 +225,7 @@
         <h3 style="text-align: right">No News Available</h3> {% endif%}
       </div>
     </div>
+
 <!-- Until found popular news rss feed, this part is not included  Guita -->
     <!-- <div id="popular" class="tabcontent">
       <div id="table-scroll_2" style="align: center;">
@@ -253,6 +258,7 @@
         <table class="table">
           <thead>
             <tr>
+              <td style="font-weight: bold;">Read Later</td>
               <td style="font-weight: bold;">Title</td>
               <td style="font-weight: bold;">Description</td>
               <td style="font-weight: bold;">Link</td>
@@ -261,6 +267,8 @@
           <tbody>
             {% for news in bitcoin_news %}
             <tr>
+              <td><input type="image" src="https://image.flaticon.com/icons/png/128/109/109433.png" height="25" width="25"
+              name="add_news" class="watch_news" /></td>
               <td style="font-weight: bold;">{{news.title}}</td>
               <td>{{news.description}}</td>
               <td><a href="{{news.link}}">{{news.link}}</a></td>
@@ -279,6 +287,7 @@
       <table class="table">
         <thead>
           <tr>
+            <td style="font-weight: bold;">Read Later</td>
             <td style="font-weight: bold;">Title</td>
             <td style="font-weight: bold;">Description</td>
             <td style="font-weight: bold;">Link</td>
@@ -287,6 +296,8 @@
         <tbody>
           {% for news in ethereum_news %}
           <tr>
+            <td><input type="image" src="https://image.flaticon.com/icons/png/128/109/109433.png" height="25" width="25"
+            name="add_news" class="watch_news" /></td>
             <td style="font-weight: bold;">{{news.title}}</td>
             <td>{{news.description}}</td>
             <td><a href="{{news.link}}">{{news.link}}</a></td>
@@ -304,6 +315,7 @@
       <table class="table">
         <thead>
           <tr>
+            <td style="font-weight: bold;">Read Later</td>
             <td style="font-weight: bold;">Title</td>
             <td style="font-weight: bold;">Description</td>
             <td style="font-weight: bold;">Link</td>
@@ -312,6 +324,9 @@
         <tbody>
           {% for news in dogecoin_news %}
           <tr>
+            <td>
+              <input type="image" src="https://image.flaticon.com/icons/png/128/109/109433.png" height="25" width="25"
+              name="add_news" class="watch_news" /></td>
             <td style="font-weight: bold;">{{news.title}}</td>
             <td>{{news.description}}</td>
             <td><a href="{{news.link}}">{{news.link}}</a></td>
@@ -324,11 +339,7 @@
     </div>
   </div>
 
-  <div class="footer">
-    <footer class="footer container-fluid text-center">
-      <p>Copyright 2017 &copy;</p>
-    </footer>
-  </div>
+
 
 </body>
 

@@ -149,6 +149,10 @@
     	position:relative;
     	z-index:2;
     }
+    .add_coin{
+      outline:none;
+      border:none;
+    }
     /*.searchsection{
       padding-left: 20px;
       padding: 5px 10px;
@@ -215,6 +219,7 @@
 
         <thead>
           <tr>
+            <th class="col_name">Watch</th>
             <th class="col_name">Name</th>
             <th class="col_name">Symbol</th>
             <th class="col_name">Rank</th>
@@ -237,6 +242,9 @@
         <tbody class="list">
           {% for token in all_tokens %}
             <tr>
+              <!-- Change the name of the id class and name -->
+              <td class="watch_button" title="Click to add to watch list"><input type="image" src="http://downloadicons.net/sites/default/files/add-a-button-icon-3255.png" height="25" width="25"
+              name="add_coin" class="watch_class" id="add_watch" /></td>
               <td class="token_name"><img src="{{token.image_url}}" height="25" width="25"><a href="/cryptocurrency/{{token.tag}}">  {{token.name}}</a></td>
               <td class="token_symbol">{{token.symbol}}</td>
               <td class="token_rank">{{token.rank}}</td>
