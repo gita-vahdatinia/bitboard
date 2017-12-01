@@ -21,12 +21,11 @@ def index(request):
 def news(request):
     rss_to_database()
     recent_news = News.objects.filter(tag='recent')
-    popular_news = News.objects.filter(tag='popular')
     bitcoin_news = News.objects.filter(tag='bitcoin')
     ethereum_news = News.objects.filter(tag='ethereum')
     dogecoin_news = News.objects.filter(tag='dogecoin')
     return render(request, 'bitboard/news.html', {
-    'popular_news': popular_news, 'recent_news': recent_news, 'bitcoin_news': bitcoin_news,
+    'recent_news': recent_news, 'bitcoin_news': bitcoin_news,
      'ethereum_news': ethereum_news, 'dogecoin_news': dogecoin_news})
 
 # /cryptocurrency
@@ -44,10 +43,10 @@ def token(request, token_tag):
         raise Http404( token_tag + " does not exist")
     return render(request, 'bitboard/token.html', {"token": token})
 
-<<<<<<< HEAD
+
 def profile(request):
     return render(request, 'bitboard/profile.html')
-=======
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -61,4 +60,3 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'bitboard/signup.html', {'form': form})
->>>>>>> ecb7fb5b31b8436f6bf463df6b7e9a84e93ab778

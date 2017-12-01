@@ -78,6 +78,15 @@
     .col_name{
       cursor: pointer; cursor: hand;
     }
+/*CSS for search bar*/
+    .searchsection {
+    position:absolute;
+    left:5.55%;
+    top:35.8%;
+    width:35%;
+    background-color:white;
+   color:grey;
+  }
 /*CSS for header with scrolling */
     .table-scroll {
     	position: relative;
@@ -140,6 +149,10 @@
     	position:relative;
     	z-index:2;
     }
+    .add_coin{
+      outline:none;
+      border:none;
+    }
     /*.searchsection{
       padding-left: 20px;
       padding: 5px 10px;
@@ -167,10 +180,9 @@
       <ul class="nav navbar-nav">
         <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
         <li><a href="{% url 'news' %}">News</a></li>
-        <li><a href="#">Following</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+        <li><a href="{% url 'signup' %}">Sign In</a></li>
       </ul>
     </div>
   </div>
@@ -206,6 +218,7 @@
 
         <thead>
           <tr>
+            <th class="col_name">Watch</th>
             <th class="col_name">Name</th>
             <th class="col_name">Symbol</th>
             <th class="col_name">Rank</th>
@@ -228,6 +241,9 @@
         <tbody class="list">
           {% for token in all_tokens %}
             <tr>
+              <!-- Change the name of the id class and name -->
+              <td class="watch_button" title="Click to add to watch list"><input type="image" src="http://downloadicons.net/sites/default/files/add-a-button-icon-3255.png" height="25" width="25"
+              name="add_coin" class="watch_class" id="add_watch" /></td>
               <td class="token_name"><img src="{{token.image_url}}" height="25" width="25"><a href="/cryptocurrency/{{token.tag}}">  {{token.name}}</a></td>
               <td class="token_symbol">{{token.symbol}}</td>
               <td class="token_rank">{{token.rank}}</td>
