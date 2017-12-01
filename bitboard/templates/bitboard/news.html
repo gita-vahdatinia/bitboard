@@ -11,10 +11,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
   <script>
+
+
+
     $(document).ready(function() {
+        // Get the element with id="defaultOpen" and click on it  
+      document.getElementById("defaultOpen").click();
       $("#cryptotable").tablesorter();
     });
-
     function opentab(tabname, elmnt) {
       // Hide all elements with class="tabcontent" by default */
       var i, tabcontent, tablinks;
@@ -34,8 +38,7 @@
 
     }
 
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
+
   </script>
 
   <style>
@@ -185,7 +188,8 @@
   <div class="tabs">
 
     <button class="tablink" onclick="opentab('recent', this)" id="defaultOpen">recent</button>
-    <button class="tablink" onclick="opentab('popular', this)">popular</button>
+    <!-- Until popular news rss feed is added - this part is not going to be included
+    <button class="tablink" onclick="opentab('popular', this)">popular</button> -->
     <button class="tablink" onclick="opentab('bitcoin', this)">bitcoin</button>
     <button class="tablink" onclick="opentab('ethereum', this)">ethereum</button>
     <button class="tablink" onclick="opentab('dogecoin', this)">dogecoin</button>
@@ -217,8 +221,8 @@
         <h3 style="text-align: right">No News Available</h3> {% endif%}
       </div>
     </div>
-
-    <div id="popular" class="tabcontent">
+<!-- Until found popular news rss feed, this part is not included  Guita -->
+    <!-- <div id="popular" class="tabcontent">
       <div id="table-scroll_2" style="align: center;">
         {% if popular_news %}
         <table class="table">
@@ -242,7 +246,7 @@
         {% else %}
         <h3 style="text-align: right">No News Available</h3> {% endif%}
       </div>
-    </div>
+    </div> -->
     <div id="bitcoin" class="tabcontent">
       <div id="table-scroll_3" style="align: center;">
         {% if bitcoin_news %}

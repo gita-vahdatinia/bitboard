@@ -1,5 +1,6 @@
 import requests
 import json
+import re
 from .models import Cryptocurrency
 from .models import Cryptocompare
 from .models import News
@@ -8,28 +9,25 @@ import feedparser
 def rss_to_database():
     rss_sources = {'recent':
         ['http://feeds.feedburner.com/CoinDesk',
-        'http://bitcoin.worldnewsoffice.com/rss/category/1',
+        # 'http://bitcoin.worldnewsoffice.com/rss/category/1',
+        'http://feed43.com/7570437205278443.xml'
         # 'https://cointelegraph.com/rss',
         # 'http://www.newsbtc.com/feed/'
         ],
         'popular':
         [
-
-
         ],
         'ethereum':
         [
-         'https://www.ethnews.com/rss.xml',
+        'http://feed43.com/5467350176171842.xml',
         ],
         'bitcoin':
         [
-         'http://bitcoin.worldnewsoffice.com/rss/category/1/',
-        # 'http://feed.informer.com/digests/I2GGLAVR70/feeder.rss',
-         'http://www.newsbtc.com/feed/'
-        ],
+          'http://feed43.com/4124842572635051.xml'
+         ],
         'dogecoin':
         [
-         'https://www.reddit.com/r/dogecoin/.rss'
+         'http://feed43.com/0788173065157115.xml'
         ]
         }
     tags = ['recent', 'popular', 'ethereum', 'bitcoin','dogecoin']
@@ -39,14 +37,15 @@ def rss_to_database():
 
             for x in range(0, len(d['entries'])):
                 if( not News.objects.filter(title=d.entries[x].title).exists()):
+                    # to remove the addd at the end of the description
+                    desc1 = d.entries[x].description
+                    desc2 = re.sub(r'''(.*)<p><sub><i>-- Delivered by <a href="http://feed43.com/">Feed43</a> service</i></sub></p>''',r'\1',desc1)
                     News(
                         tag = t,
-                        title=d.entries[x].title,
-                        description=d.entries[x].description,
+                        title=(d.entries[x].title),
+                        description=desc2,
                         link=d.entries[x].link
                         ).save()
-
-            # print (d.namespaces)
 
 def get_tokens():
     url = 'https://api.coinmarketcap.com/v1/ticker/'
@@ -149,50 +148,3 @@ def get_crypto_compare_coins():
             token = Cryptocurrency.objects.get(symbol=coin['Symbol'])
             token.image_url = coin['ImageUrl']
             token.save()
-
-
-        # try:
-        #     float(coin['TotalCoinSupply'])
-        # except:
-        #     coin['TotalCoinSupply'] = -1
-
-        # url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + str(coin['Symbol']) + '&tsyms=BTC,USD'
-        # r = requests.get(url)
-        # price_data = r.json()
-
-        # if( not Cryptocompare.objects.filter(coin_id=coin['Id']).exists() ):
-        #
-        #     Cryptocompare(
-        #         coin_name=coin['CoinName'],
-        #         name=coin['Name'],
-        #         algorithm=coin['Algorithm'],
-        #         url=coin['Url'],
-        #         image_url=coin['ImageUrl'],
-        #         coin_id=coin['Id'],
-        #         proof_type=coin['ProofType'],
-        #         sort_order=coin['SortOrder'],
-        #         total_coin_supply=coin['TotalCoinSupply'],
-        #         full_name=coin['FullName'],
-        #         symbol=coin['Symbol'],
-        #         # usd_change_24_hours=price_data['RAW'][str(coin['Symbol'])]['USD']['CHANGE24HOUR'],
-        #         # percent_change_24_hours=price_data['RAW'][str(coin['Symbol'])]['USD']['CHANGEPCT24HOUR'],
-        #         # supply=price_data['RAW'][str(coin['Symbol'])]['USD']['SUPPLY'],
-        #         # market_cap_usd=price_data['RAW'][str(coin['Symbol'])]['USD']['MKTCAP']
-        #
-        #     ).save()
-        #
-        # else:
-        #
-        #     token = Cryptocompare.objects.get(coin['Id'])
-        #     token.coin_name = coin['CoinName']
-        #     token.name = coin['Name']
-        #     token.algorithm = coin['Algorithm']
-        #     token.url = coin['Url']
-        #     token.image_url = coin['ImageUrl']
-        #     token.coin_id = coin['Id']
-        #     token.proof_type = coin['ProofType']
-        #     token.sort_order = coin['SortOrder']
-        #     token.total_coin_supply = coin['TotalCoinSupply']
-        #     token.full_name = coin['FullName']
-        #     token.symbol = coin['Symbol']
-        #     token.save()
