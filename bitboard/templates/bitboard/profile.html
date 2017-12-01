@@ -177,7 +177,9 @@
         <li><a href="#">Following</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="signup.html"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
       </ul>
     </div>
   </div>
