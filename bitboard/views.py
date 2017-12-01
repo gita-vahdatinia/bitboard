@@ -17,7 +17,7 @@ from django.contrib.auth.forms import UserCreationForm
 def index(request):
     return render(request, 'bitboard/index.html')
 
-# /news
+# /news - renders the news html page and redirects the user
 def news(request):
     rss_to_database()
     recent_news = News.objects.filter(tag='recent')
@@ -28,14 +28,15 @@ def news(request):
     'recent_news': recent_news, 'bitcoin_news': bitcoin_news,
      'ethereum_news': ethereum_news, 'dogecoin_news': dogecoin_news})
 
-# /cryptocurrency
+# /cryptocurrency renders the main page
 def cryptocurrency(request):
     add_tokens_to_database()
     get_crypto_compare_coins()
     all_tokens = Cryptocurrency.objects.all().order_by('rank')
-    return render(request, 'bitboard/cryptocurrency.html', {"all_tokens": all_tokens})
+    return render(request, 'bitboard/cryptocurrency.html',
+           {"all_tokens": all_tokens})
 
-# /cryptocurrency/bitcoin
+# /cryptocurrency/bitcoin - renders whatever coin is clicked on
 def token(request, token_tag):
     try:
         token = Cryptocurrency.objects.get(tag=token_tag)

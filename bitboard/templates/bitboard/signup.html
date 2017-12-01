@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <style>
   /* Full-width input fields */
@@ -85,7 +86,9 @@
   /* Add padding to container elements */
 
   .container {
-    padding: 100px;
+    margin-top: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
   }
 
   /* Clear floats */
@@ -106,40 +109,14 @@
   }
 </style>
 <div class="basic">
-{% include "/code/bitboard/templates/bitboard/navbar.html" %}
+  {% include "/code/bitboard/templates/bitboard/navbar.html" %}
 </div>
-<!-- <nav class="navbar navbar-inverse">
-
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-      <a class="navbar-brand" href="{% url 'index' %}">BitBoard</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
-        <li><a href="{% url 'news' %}">News</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'signup' %}">Sign Up</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <li><a href="{% url 'logout' %}">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-
-</nav> -->
 
 <div class="container">
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %} {% for field in form %}
     <p>
-
       {{ field.label_tag }}<br> {{ field }} {% if field.help_text %}
       <small style="color: grey">{{ field.help_text }}</small> {% endif %} {% for error in field.errors %}
       <p style="color: red">{{ error }}</p>
@@ -149,3 +126,5 @@
     <button type="submit">Sign up</button>
   </form>
 </div>
+
+</html>
