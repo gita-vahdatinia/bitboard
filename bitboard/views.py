@@ -21,12 +21,11 @@ def index(request):
 def news(request):
     rss_to_database()
     recent_news = News.objects.filter(tag='recent')
-    popular_news = News.objects.filter(tag='popular')
     bitcoin_news = News.objects.filter(tag='bitcoin')
     ethereum_news = News.objects.filter(tag='ethereum')
     dogecoin_news = News.objects.filter(tag='dogecoin')
     return render(request, 'bitboard/news.html', {
-    'popular_news': popular_news, 'recent_news': recent_news, 'bitcoin_news': bitcoin_news,
+    'recent_news': recent_news, 'bitcoin_news': bitcoin_news,
      'ethereum_news': ethereum_news, 'dogecoin_news': dogecoin_news})
 
 # /cryptocurrency

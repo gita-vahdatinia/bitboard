@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>BitBoard | Cryptocurrency</title>
   <link rel="icon" href="https://image.flaticon.com/icons/png/128/214/214337.png" />
@@ -13,29 +14,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
   <script>
+    $(document).ready(function() {
+      //Table sorting fucntion
+      var options = {
+        valueNames: ['token_name', 'token_rank', 'token_symbol']
+      };
 
+      var userList = new List('searchtable', options);
+      $(".main-table").tablesorter();
+      /*  header with scrolling function JS */
 
-
-
-  $(document).ready(function()
-      {
-        //Table sorting fucntion
-        var options = {
-          valueNames: [ 'token_name', 'token_rank', 'token_symbol' ]
-        };
-
-        var userList = new List('searchtable', options);
-          $(".main-table").tablesorter();
-          /*  header with scrolling function JS */
-
-        });
-
-
-
+    });
   </script>
 
   <style>
-
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
@@ -55,9 +47,9 @@
     }
 
     td {
-       text-align: left;
-       max-width:8vw;
-       word-wrap:break-word;
+      text-align: left;
+      max-width: 8vw;
+      word-wrap: break-word;
 
 
     }
@@ -75,8 +67,9 @@
       text-align: center;
     }
 
-    .col_name{
-      cursor: pointer; cursor: hand;
+    .col_name {
+      cursor: pointer;
+      cursor: hand;
     }
 /*CSS for search bar*/
     .searchsection {
@@ -89,65 +82,85 @@
   }
 /*CSS for header with scrolling */
     .table-scroll {
-    	position: relative;
-    	max-width: 1280px;
-    	width:100%;
-    	margin: auto;
-    	display:table;
+      position: relative;
+      max-width: 1280px;
+      width: 100%;
+      margin: auto;
+      display: table;
     }
-    .table-wrap {
-    	width: 100%;
-    	display:block;
-    	height: 300px;
-    	overflow: auto;
-    	position:relative;
-    	z-index:1;
-    }
-    .table-scroll table {
-    	width: 100%;
-    	margin: auto;
-    	border-collapse: separate;
-    	border-spacing: 0;
-    }
-    .table-scroll th, .table-scroll td {
-    	padding: 5px 10px;
 
-    	vertical-align: top;
+    .table-wrap {
+      width: 100%;
+      display: block;
+      height: 300px;
+      overflow: auto;
+      position: relative;
+      z-index: 1;
     }
+
+    .table-scroll table {
+      width: 100%;
+      margin: auto;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .table-scroll th,
+    .table-scroll td {
+      padding: 5px 10px;
+
+      vertical-align: top;
+    }
+
     .cryptotable table {
-    	position: absolute;
-    	top: 0;
-    	left: 0;
-    	width: 100%;
-    	pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
     }
-    .cryptotable table + table {
-    	top: auto;
-    	bottom: 0;
+
+    .cryptotable table+table {
+      top: auto;
+      bottom: 0;
     }
-    .cryptotable table tbody, .cryptotable  tfoot {
-    	visibility: hidden;
-    	border-color: transparent;
+
+    .cryptotable table tbody,
+    .cryptotable tfoot {
+      visibility: hidden;
+      border-color: transparent;
     }
-    .cryptotable table + table thead {
-    	visibility: hidden;
-    	border-color: transparent;
+
+    .cryptotable table+table thead {
+      visibility: hidden;
+      border-color: transparent;
     }
-    .cryptotable table + table  tfoot{
-    	visibility:visible;
+
+    .cryptotable table+table tfoot {
+      visibility: visible;
     }
 
     .cryptotable {
-    	position:absolute;
-    	top:0;
-    	right:0;
-    	left:0;
-    	bottom:0;
-    	overflow-y:scroll;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      overflow-y: scroll;
     }
-    .cryptotable thead, .cryptotable tfoot, .cryptotable thead th, .cryptotable tfoot th, .cryptotable tfoot td {
-    	position:relative;
-    	z-index:2;
+
+    .cryptotable thead,
+    .cryptotable tfoot,
+    .cryptotable thead th,
+    .cryptotable tfoot th,
+    .cryptotable tfoot td {
+      position: relative;
+      z-index: 2;
+    }
+
+    .add_coin {
+      outline: none;
+      border: none;
     }
     .add_coin{
       outline:none;
@@ -163,84 +176,88 @@
     }*/
   </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse">
 
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'index' %}">BitBoard</a>
+        <a class="navbar-brand" href="{% url 'index' %}">BitBoard</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
+          <li><a href="{% url 'news' %}">News</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'signup' %}">Sign In</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
-        <li><a href="{% url 'news' %}">News</a></li>
-        <li><a href="#">Following</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="signup.html"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
-      </ul>
+<<<<<<< HEAD
+
+  </nav>
+
+  <div class="jumbotron">
+    <div class="container text-center">
+      <h1>Cryptocurrency</h1>
+      <p>To The Moon</p>
     </div>
-  </div>
-</nav>
 
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1>Cryptocurrency</h1>
-    <p>To The Moon</p>
   </div>
 
-</div>
 
-
-<!-- <<<<<<< HEAD -->
-<!-- <div class="coins container-fluid bg-3 text-center" id="table-wrapper">
+  <!-- <<<<<<< HEAD -->
+  <!-- <div class="coins container-fluid bg-3 text-center" id="table-wrapper">
   <div id="table-scroll" style="align: center;"> -->
-<!-- ======= -->
-<div id="searchtable">
-  <div class="searchsection" id="searchsection">
-  <input class="search" placeholder="Search" />
-  </div>
-<div id="table-scroll" class="table-scroll">
-  <div id="cryptotable" class="cryptotable" aria="hidden"></div>
-  <div class="table-wrap">
+  <!-- ======= -->
 
-    <table id="main-table " class="main-table" width="500">
+  <div id="table-scroll" class="table-scroll">
+    <div id="searchtable">
+      <div class="searchsection" id="searchsection">
+        <input class="search" placeholder="Search" />
+      </div>
+      <div id="cryptotable" class="cryptotable" aria="hidden"></div>
 
-<!-- >>>>>>> 8bd5de4b73e69e7cc812c4d2053d3e7f3a852f18 -->
-    {% if all_tokens %}
+      <div class="table-wrap">
+
+        <table id="main-table " class="main-table" width="500">
+
+          <!-- >>>>>>> 8bd5de4b73e69e7cc812c4d2053d3e7f3a852f18 -->
+          {% if all_tokens %}
 
 
 
-        <thead>
-          <tr>
-            <th class="col_name">Watch</th>
-            <th class="col_name">Name</th>
-            <th class="col_name">Symbol</th>
-            <th class="col_name">Rank</th>
-            <th class="col_name">Price USD</th>
-            <th class="col_name">Price BTC</th>
-            <th class="col_name">24H Volume (USD)</th>
-            <th class="col_name">Market Cap (USD)</th>
-            <th class="col_name">Available Supply</th>
-            <th class="col_name">Total Supply</th>
-            <th class="col_name">% 1H</th>
-            <th class="col_name">% 24H</th>
-            <th class="col_name">% 7D</th>
-<!--
+          <thead>
+            <tr>
+              <th class="col_name">Watch</th>
+              <th class="col_name">Name</th>
+              <th class="col_name">Symbol</th>
+              <th class="col_name">Rank</th>
+              <th class="col_name">Price USD</th>
+              <th class="col_name">Price BTC</th>
+              <th class="col_name">24H Volume (USD)</th>
+              <th class="col_name">Market Cap (USD)</th>
+              <th class="col_name">Available Supply</th>
+              <th class="col_name">Total Supply</th>
+              <th class="col_name">% 1H</th>
+              <th class="col_name">% 24H</th>
+              <th class="col_name">% 7D</th>
+              <!--
             <th>Name</th>
             <th>Symbol</th>
             <th>Total Coin Supply</th> -->
 
-          </tr>
-        </thead>
-        <tbody class="list">
-          {% for token in all_tokens %}
+            </tr>
+          </thead>
+          <tbody class="list">
+            {% for token in all_tokens %}
             <tr>
               <!-- Change the name of the id class and name -->
               <td class="watch_button" title="Click to add to watch list"><input type="image" src="http://downloadicons.net/sites/default/files/add-a-button-icon-3255.png" height="25" width="25"
@@ -264,18 +281,18 @@
               <td>{{token.symbol}}</td>
               <td>{{token.total_coin_supply}}</td>
             </tr> -->
-          {% endfor%}
-        </tbody>
-      </table>
-    {% else %}
-      <h3 style="text-align: right">No Tokens Available</h3>
-    {% endif%}
-</div>
-</div>
-</div>
+            {% endfor%}
+          </tbody>
+        </table>
+        {% else %}
+        <h3 style="text-align: right">No Tokens Available</h3> {% endif%}
+      </div>
+    </div>
+  </div>
 
 
 
 
 </body>
+
 </html>
