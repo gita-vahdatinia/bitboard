@@ -71,37 +71,9 @@
 </head>
 
 <body>
-
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-        <a class="navbar-brand" href="{% url 'index' %}">BitBoard</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
-          <li><a href="{% url 'news' %}">News</a></li>
-          <button class="dropbtn">Dropped News
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="{% url 'recent' %}">Recent</a>
-            <a href="{% url 'popular' %}">Popular</a>
-            <a href="{}% url 'coins' %}">Coins</a>
-          </div>
-          <li><a href="#">Following</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <div class="basic">
+  {% include "/code/bitboard/templates/bitboard/navbar.html" %}
+  </div>
 
   <div class="jumbotron">
     <div class="container text-center">

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>BitBoard | Cryptocurrency</title>
   <link rel="icon" href="https://image.flaticon.com/icons/png/128/214/214337.png" />
@@ -13,29 +14,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
   <script>
+    $(document).ready(function() {
+      //Table sorting fucntion
+      var options = {
+        valueNames: ['token_name', 'token_rank', 'token_symbol']
+      };
 
+      var userList = new List('searchtable', options);
+      $(".main-table").tablesorter();
+      /*  header with scrolling function JS */
 
-
-
-  $(document).ready(function()
-      {
-        //Table sorting fucntion
-        var options = {
-          valueNames: [ 'token_name', 'token_rank', 'token_symbol' ]
-        };
-
-        var userList = new List('searchtable', options);
-          $(".main-table").tablesorter();
-          /*  header with scrolling function JS */
-
-        });
-
-
-
+    });
   </script>
 
   <style>
-
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
@@ -55,9 +47,9 @@
     }
 
     td {
-       text-align: left;
-       max-width:8vw;
-       word-wrap:break-word;
+      text-align: left;
+      max-width: 8vw;
+      word-wrap: break-word;
 
 
     }
@@ -75,70 +67,88 @@
       text-align: center;
     }
 
-    .col_name{
-      cursor: pointer; cursor: hand;
+    .col_name {
+      cursor: pointer;
+      cursor: hand;
     }
-/*CSS for header with scrolling */
-    .table-scroll {
-    	position: relative;
-    	max-width: 1280px;
-    	width:100%;
-    	margin: auto;
-    	display:table;
-    }
-    .table-wrap {
-    	width: 100%;
-    	display:block;
-    	height: 300px;
-    	overflow: auto;
-    	position:relative;
-    	z-index:1;
-    }
-    .table-scroll table {
-    	width: 100%;
-    	margin: auto;
-    	border-collapse: separate;
-    	border-spacing: 0;
-    }
-    .table-scroll th, .table-scroll td {
-    	padding: 5px 10px;
 
-    	vertical-align: top;
+    /*CSS for header with scrolling */
+
+    .table-scroll {
+      position: relative;
+      max-width: 1280px;
+      width: 100%;
+      margin: auto;
+      display: table;
     }
+
+    .table-wrap {
+      width: 100%;
+      display: block;
+      height: 300px;
+      overflow: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .table-scroll table {
+      width: 100%;
+      margin: auto;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .table-scroll th,
+    .table-scroll td {
+      padding: 5px 10px;
+
+      vertical-align: top;
+    }
+
     .cryptotable table {
-    	position: absolute;
-    	top: 0;
-    	left: 0;
-    	width: 100%;
-    	pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
     }
-    .cryptotable table + table {
-    	top: auto;
-    	bottom: 0;
+
+    .cryptotable table+table {
+      top: auto;
+      bottom: 0;
     }
-    .cryptotable table tbody, .cryptotable  tfoot {
-    	visibility: hidden;
-    	border-color: transparent;
+
+    .cryptotable table tbody,
+    .cryptotable tfoot {
+      visibility: hidden;
+      border-color: transparent;
     }
-    .cryptotable table + table thead {
-    	visibility: hidden;
-    	border-color: transparent;
+
+    .cryptotable table+table thead {
+      visibility: hidden;
+      border-color: transparent;
     }
-    .cryptotable table + table  tfoot{
-    	visibility:visible;
+
+    .cryptotable table+table tfoot {
+      visibility: visible;
     }
 
     .cryptotable {
-    	position:absolute;
-    	top:0;
-    	right:0;
-    	left:0;
-    	bottom:0;
-    	overflow-y:scroll;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      overflow-y: scroll;
     }
-    .cryptotable thead, .cryptotable tfoot, .cryptotable thead th, .cryptotable tfoot th, .cryptotable tfoot td {
-    	position:relative;
-    	z-index:2;
+
+    .cryptotable thead,
+    .cryptotable tfoot,
+    .cryptotable thead th,
+    .cryptotable tfoot th,
+    .cryptotable tfoot td {
+      position: relative;
+      z-index: 2;
     }
 
     input.hidden {
@@ -151,263 +161,271 @@
 
       width: 100px;
       height: 100px;
-      border:2px solid #03b1ce ;}
-      .tital{ font-size:16px; font-weight:500;}
-      .bot-border{ border-bottom:1px #f8f8f8 solid;  margin:5px 0  5px 0}
+      border: 2px solid #03b1ce;
+    }
 
+    .tital {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .bot-border {
+      border-bottom: 1px #f8f8f8 solid;
+      margin: 5px 0 5px 0
+    }
   </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-inverse">
+  <div class="basic">
+    {% include "/code/bitboard/templates/bitboard/navbar.html" %}
+  </div>
 
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{% url 'index' %}">BitBoard</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
-        <li><a href="{% url 'news' %}">News</a></li>
-        <li><a href="#">Following</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'signup' %}">Sign Up</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <li><a href="{% url 'logout' %}">Logout</a></li>
-      </ul>
+
+  <div class="jumbotron">
+    <div class="container text-center">
+      <h1>Profile</h1>
+      <p>To The Moon</p>
     </div>
   </div>
-</nav>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-7">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>User Profile</h3></div>
+          <div class="panel-body">
+
+            <div class="box box-info">
+
+              <div class="box-body">
+                <div class="col-sm-6">
+                  <div align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">
+
+                    <input id="profile-image-upload" class="hidden" type="file">
+                    <div style="color:#999;">click here to change profile image</div>
+                    <!--Upload Image Js And Css-->
+
+                  </div>
+
+                  <br>
+
+                  <!-- /input-group -->
+                </div>
+                <div class="col-sm-6.5">
+                  <h4 style="color:#00b1b1;">UCSC Slug </h4>
+                  <span><p>Professional Investor </p></span>
+                </div>
+                <div class="clearfix"></div>
+                <hr style="margin:5px 0 5px 0;">
 
 
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1>Profile</h1>
-    <p>To The Moon</p>
-  </div>
-</div>
-<div class="container">
-	<div class="row">
+                <div class="col-sm-5 col-xs-10 tital ">First Name:</div>
+                <div class="col-sm-7 col-xs-6 ">Slug</div>
+                <div class="clearfix"></div>
+                <div class="bot-border"></div>
 
-       <div class="col-md-7">
+                <div class="col-sm-5 col-xs-6 tital ">Middle Name:</div>
+                <div class="col-sm-7"> xxx</div>
+                <div class="clearfix"></div>
+                <div class="bot-border"></div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">  <h3 >User Profile</h3></div>
-   <div class="panel-body">
+                <div class="col-sm-5 col-xs-6 tital ">Last Name:</div>
+                <div class="col-sm-7"> xxx</div>
+                <div class="clearfix"></div>
+                <div class="bot-border"></div>
 
-    <div class="box box-info">
+                <div class="col-sm-5 col-xs-6 tital ">Date Of Joining:</div>
+                <div class="col-sm-7">15 July 2017</div>
 
-            <div class="box-body">
-                     <div class="col-sm-6">
-                     <div  align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">
+                <div class="clearfix"></div>
+                <div class="bot-border"></div>
 
-                <input id="profile-image-upload" class="hidden" type="file">
-<div style="color:#999;" >click here to change profile image</div>
-                <!--Upload Image Js And Css-->
+                <div class="col-sm-5 col-xs-6 tital ">Date Of Birth:</div>
+                <div class="col-sm-7">11 Jun 1997</div>
 
-                     </div>
+                <div class="clearfix"></div>
+                <div class="bot-border"></div>
 
-              <br>
+                <div class="col-sm-5 col-xs-6 tital ">Place Of Birth:</div>
+                <div class="col-sm-7">UCSC</div>
 
-              <!-- /input-group -->
+                <div class="clearfix"></div>
+                <div class="bot-border"></div>
+
+                <div class="col-sm-5 col-xs-6 tital ">Nationality:</div>
+                <div class="col-sm-7">United State</div>
+
+                <div class="clearfix"></div>
+                <div class="bot-border"></div>
+
+                <div class="col-sm-5 col-xs-6 tital ">Language:</div>
+                <div class="col-sm-7">English</div>
+
+                <div class="clearfix"></div>
+                <div class="bot-border"></div>
+
+                <div class="col-sm-5 col-xs-6 tital ">Phone:</div>
+                <div class="col-sm-7">831-221-1313</div>
+
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+
             </div>
-            <div class="col-sm-6.5">
-            <h4 style="color:#00b1b1;">UCSC Slug </h4>
-              <span><p>Professional Investor </p></span>
-            </div>
-            <div class="clearfix"></div>
-            <hr style="margin:5px 0 5px 0;">
 
 
-<div class="col-sm-5 col-xs-10 tital " >First Name:</div><div class="col-sm-7 col-xs-6 ">Slug</div>
-     <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Middle Name:</div><div class="col-sm-7"> xxx</div>
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"> xxx</div>
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Date Of Joining:</div><div class="col-sm-7">15 July 2017</div>
-
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Date Of Birth:</div><div class="col-sm-7">11 Jun 1997</div>
-
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Place Of Birth:</div><div class="col-sm-7">UCSC</div>
-
- <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Nationality:</div><div class="col-sm-7">United State</div>
-
- <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Language:</div><div class="col-sm-7">English</div>
-
-<div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Phone:</div><div class="col-sm-7">831-221-1313</div>
-
-            <!-- /.box-body -->
           </div>
-          <!-- /.box -->
-
         </div>
+      </div>
+      <script>
+        $(function() {
+          $('#profile-image1').on('click', function() {
+            $('#profile-image-upload').click();
+          });
+        });
+      </script>
+
+
+
+
+
+      <style>
+        * {
+          box-sizing: border-box
+        }
+
+        body {
+          font-family: "Lato", sans-serif;
+        }
+
+        /* Style the tab */
+
+        div.tab {
+          float: left;
+          border: 1px solid #ccc;
+          background-color: #f1f1f1;
+          width: 10%;
+          height: 555px;
+        }
+
+        /* Style the buttons inside the tab */
+
+        div.tab button {
+          display: block;
+          background-color: inherit;
+          color: black;
+          padding: 22px 16px;
+          width: 100%;
+          border: none;
+          outline: none;
+          text-align: left;
+          cursor: pointer;
+          transition: 0.3s;
+          font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+
+        div.tab button:hover {
+          background-color: #ddd;
+        }
+
+        /* Create an active/current "tab button" class */
+
+        div.tab button.active {
+          background-color: #ccc;
+        }
+
+        /* Style the tab content */
+
+        .tabcontent {
+          float: left;
+          padding: 0px 12px;
+          border: 1px solid #ccc;
+          width: 30%;
+          border-left: none;
+          height: 555px;
+        }
+      </style>
+
+
+
+      <div class="tab">
+        <button class="tablinks" onclick="opentab(event, 'Watched Coins')" id="defaultOpen">Watched Coins</button>
+        <button class="tablinks" onclick="opentab(event, 'Read Later')">Read Later</button>
+        <button class="tablinks" onclick="opentab(event, 'Converter')">Converter</button>
+        <button class="tablinks" onclick="opentab(event, 'More1')">More</button>
+        <button class="tablinks" onclick="opentab(event, 'More2')">More</button>
+        <button class="tablinks" onclick="opentab(event, 'More3')">More</button>
+        <button class="tablinks" onclick="opentab(event, 'More1')">More</button>
+      </div>
+
+      <div id="Watched Coins" class="tabcontent">
+        <h3>Watched Coins</h3>
+        <p>Bitcoin, Ethereum.</p>
+      </div>
+
+      <div id="Read Later" class="tabcontent">
+        <h3>Read Later</h3>
+        <p>News Links</p>
+      </div>
+
+      <div id="Converter" class="tabcontent">
+        <h3>Converter</h3>
+        <p>some converter tool</p>
+      </div>
+
+      <div id="More1" class="tabcontent">
+        <h3>More</h3>
+        <p>...</p>
+      </div>
+      <div id="more2" class="tabcontent">
+        <h3>More</h3>
+        <p></p>
+      </div>
+      <div id="More3" class="tabcontent">
+        <h3>More</h3>
+        <p></p>
+      </div>
+
+      <script>
+        function opentab(evt, cityName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+      </script>
+
+
 
 
     </div>
-    </div>
-</div>
-    <script>
-              $(function() {
-    $('#profile-image1').on('click', function() {
-        $('#profile-image-upload').click();
-    });
-});
-              </script>
-
-
-
-
-
-              <style>
-              * {box-sizing: border-box}
-              body {font-family: "Lato", sans-serif;}
-
-              /* Style the tab */
-              div.tab {
-                  float: left;
-                  border: 1px solid #ccc;
-                  background-color: #f1f1f1;
-                  width: 10%;
-                  height: 555px;
-              }
-
-              /* Style the buttons inside the tab */
-              div.tab button {
-                  display: block;
-                  background-color: inherit;
-                  color: black;
-                  padding: 22px 16px;
-                  width: 100%;
-                  border: none;
-                  outline: none;
-                  text-align: left;
-                  cursor: pointer;
-                  transition: 0.3s;
-                  font-size: 17px;
-              }
-
-              /* Change background color of buttons on hover */
-              div.tab button:hover {
-                  background-color: #ddd;
-              }
-
-              /* Create an active/current "tab button" class */
-              div.tab button.active {
-                  background-color: #ccc;
-              }
-
-              /* Style the tab content */
-              .tabcontent {
-                  float: left;
-                  padding: 0px 12px;
-                  border: 1px solid #ccc;
-                  width: 30%;
-                  border-left: none;
-                  height: 555px;
-              }
-              </style>
-
-
-
-              <div class="tab">
-                <button class="tablinks" onclick="opentab(event, 'Watched Coins')" id="defaultOpen">Watched Coins</button>
-                <button class="tablinks" onclick="opentab(event, 'Read Later')">Read Later</button>
-                <button class="tablinks" onclick="opentab(event, 'Converter')">Converter</button>
-                <button class="tablinks" onclick="opentab(event, 'More1')">More</button>
-                <button class="tablinks" onclick="opentab(event, 'More2')">More</button>
-                <button class="tablinks" onclick="opentab(event, 'More3')">More</button>
-                <button class="tablinks" onclick="opentab(event, 'More1')">More</button>
-              </div>
-
-              <div id="Watched Coins" class="tabcontent">
-                <h3>Watched Coins</h3>
-                <p>Bitcoin, Ethereum.</p>
-              </div>
-
-              <div id="Read Later" class="tabcontent">
-                <h3>Read Later</h3>
-                <p>News Links</p>
-              </div>
-
-              <div id="Converter" class="tabcontent">
-                <h3>Converter</h3>
-                <p>some converter tool</p>
-              </div>
-
-              <div id="More1" class="tabcontent">
-                <h3>More</h3>
-                <p>...</p>
-              </div>
-              <div id="more2" class="tabcontent">
-                <h3>More</h3>
-                <p></p>
-              </div>
-              <div id="More3" class="tabcontent">
-                <h3>More</h3>
-                <p></p>
-              </div>
-
-              <script>
-              function opentab(evt, cityName) {
-                  var i, tabcontent, tablinks;
-                  tabcontent = document.getElementsByClassName("tabcontent");
-                  for (i = 0; i < tabcontent.length; i++) {
-                      tabcontent[i].style.display = "none";
-                  }
-                  tablinks = document.getElementsByClassName("tablinks");
-                  for (i = 0; i < tablinks.length; i++) {
-                      tablinks[i].className = tablinks[i].className.replace(" active", "");
-                  }
-                  document.getElementById(cityName).style.display = "block";
-                  evt.currentTarget.className += " active";
-              }
-
-              // Get the element with id="defaultOpen" and click on it
-              document.getElementById("defaultOpen").click();
-              </script>
-
-
-
-
-   </div>
-</div>
+  </div>
 
 
 
 
 
 
-<!-- <<<<<<< HEAD -->
-<!-- <div class="coins container-fluid bg-3 text-center" id="table-wrapper">
+  <!-- <<<<<<< HEAD -->
+  <!-- <div class="coins container-fluid bg-3 text-center" id="table-wrapper">
   <div id="table-scroll" style="align: center;"> -->
-<!-- ======= -->
+  <!-- ======= -->
 </body>
+
 </html>
