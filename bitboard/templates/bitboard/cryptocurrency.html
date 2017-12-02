@@ -74,14 +74,12 @@
 
     /*CSS for search bar*/
 
-    /*.searchsection {
-      position: absolute;
-      left: 5.55%;
-      top: 35.8%;
-      width: 35%;
-      background-color: white;
-      color: grey;
-    }*/
+    .searchsection {
+      position: relative;
+      max-width: 1280px;
+      width: 100%;
+      margin: auto;
+    }
 
     /*CSS for header with scrolling */
 
@@ -212,23 +210,18 @@
   </div>
 
 
-  <!-- <<<<<<< HEAD -->
-  <!-- <div class="coins container-fluid bg-3 text-center" id="table-wrapper">
-  <div id="table-scroll" style="align: center;"> -->
-  <!-- ======= -->
-
+  <div id="searchtable">
+    <div class="searchsection" id="searchsection">
+      <input class="search" placeholder="Search" />
+    </div>
   <div id="table-scroll" class="table-scroll">
-    <div id="searchtable">
-      <div class="searchsection" id="searchsection">
-        <input class="search" placeholder="Search" />
-      </div>
+
       <div id="cryptotable" class="cryptotable" aria="hidden"></div>
 
       <div class="table-wrap">
 
         <table id="main-table " class="main-table" width="500">
 
-          <!-- >>>>>>> 8bd5de4b73e69e7cc812c4d2053d3e7f3a852f18 -->
           {% if all_tokens %}
 
 
