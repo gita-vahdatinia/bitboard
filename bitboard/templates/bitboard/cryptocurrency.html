@@ -122,6 +122,7 @@
       pointer-events: none;
     }
 
+
     .cryptotable table+table {
       top: auto;
       bottom: 0;
@@ -165,34 +166,14 @@
       border: none;
     }
 
-
   </style>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-inverse">
-
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-        <a class="navbar-brand" href="{% url 'index' %}">BitBoard</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
-          <li><a href="{% url 'news' %}">News</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'signup' %}">Sign In</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <div class="basic">
+  {% include "/code/bitboard/templates/bitboard/navbar.html" %}
+  </div>
 
   <div class="jumbotron">
     <div class="container text-center">
@@ -216,8 +197,6 @@
         <table id="main-table " class="main-table" width="500">
 
           {% if all_tokens %}
-
-
 
           <thead>
             <tr>
@@ -260,11 +239,6 @@
               <td>{% load humanize %}{{token.percent_change_7d|intcomma}}</td>
             </tr>
 
-            <!-- <tr>
-              <td><img src="{{token.image_url}}" height="42" width="42">{{token.name}}</td>
-              <td>{{token.symbol}}</td>
-              <td>{{token.total_coin_supply}}</td>
-            </tr> -->
             {% endfor%}
           </tbody>
         </table>
