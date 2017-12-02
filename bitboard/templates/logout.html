@@ -1,9 +1,34 @@
+
 <!DOCTYPE html>
+<html>
+<link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-{% block title %}See you!{% endblock %}
+<style>
+  /* Add padding to container elements */
 
-{% block content %}
+  .container {
+    margin-top: 5%;
+    margin-left: 40%;
+    margin-right: 40%;
+  }
+  /* Change styles for cancel button and signup button on extra small screens */
+
+  @media screen and (max-width: 300px) {
+    .cancelbtn,
+    .signupbtn {
+      width: 100%;
+    }
+  }
+</style>
+<div class="basic">
+  {% include "/code/bitboard/templates/bitboard/navbar.html" %}
+</div>
+
+<div class="container">
   <h2>Logged out</h2>
   <p>You have been successfully logged out.</p>
   <p><a href="{% url 'login' %}">Log in</a> again.</p>
-{% endblock %}
+</div>
+
+</html>

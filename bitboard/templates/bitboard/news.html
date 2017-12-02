@@ -42,11 +42,6 @@
   </script>
 
   <style>
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-
     .coins {
       overflow-x: auto;
     }
@@ -155,29 +150,9 @@
 </head>
 
 <body>
-
-  <nav class="navbar navbar-inverse">
-
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="{% url 'index' %}">BitBoard</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
-          <li><a href="{% url 'news' %}">News</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="{% url 'signup' %}">Sign In</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <div class="basic">
+  {% include "/code/bitboard/templates/bitboard/navbar.html" %}
+  </div>
 
   <div class="jumbotron">
     <div class="container text-center">
@@ -337,13 +312,7 @@
       <h3 style="text-align: right">No News Available</h3> {% endif%}
     </div>
   </div>
-<!--
-  <div class="footer">
-    <footer class="footer container-fluid text-center">
-      <p>Copyright 2017 &copy;</p>
-    </footer>
-  </div>
--->
+
 </body>
 
 </html>

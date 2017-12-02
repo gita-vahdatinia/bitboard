@@ -3,105 +3,23 @@
 
 <head>
   <title>BitBoard | Cryptocurrency</title>
-  <link rel="icon" href="https://image.flaticon.com/icons/png/128/214/214337.png" />
+  <link rel="icon" href=
+  "https://image.flaticon.com/icons/png/128/214/214337.png"/>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+  <link rel="stylesheet" href=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script>
     $(document).ready(function() {
       $("#cryptotable").tablesorter();
     });
   </script>
-
-  <style>
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-
-    .coins {
-      overflow-x: auto;
-    }
-
-    table {
-      overflow-y: scroll;
-      width: 20px
-    }
-
-    th {
-      background-color: #4CAF50;
-      color: white;
-
-    }
-
-    tr:hover {
-      background-color: #f5f5f5
-    }
-
-    td {
-      text-align: left;
-    }
-
-    #table-scroll {
-      height: 400px;
-      overflow: auto;
-      margin-top: 18px;
-    }
-
-    .footer {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      /*padding: 1rem;*/
-      padding-top: 25px;
-      padding-bottom: 25px;
-      background-color: #f2f2f2;
-      text-align: center;
-    }
-
-    .col_name {
-      cursor: pointer;
-      cursor: hand;
-    }
-  </style>
 </head>
 
 <body>
-
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-        <a class="navbar-brand" href="{% url 'index' %}">BitBoard</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li><a href="{% url 'cryptocurrency' %}">Cryptocurrency</a></li>
-          <li><a href="{% url 'news' %}">News</a></li>
-          <button class="dropbtn">Dropped News
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="{% url 'recent' %}">Recent</a>
-            <a href="{% url 'popular' %}">Popular</a>
-            <a href="{}% url 'coins' %}">Coins</a>
-          </div>
-          <li><a href="#">Following</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <div class="basic">
+  {% include "/code/bitboard/templates/bitboard/navbar.html" %}
+  </div>
 
   <div class="jumbotron">
     <div class="container text-center">
@@ -140,7 +58,5 @@
       <p>Copyright 2017 &copy;</p>
     </footer>
   </div>
-
 </body>
-
 </html>
