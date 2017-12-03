@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-# Create your models here.
+# Models for the database, to hold the information for each template
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -63,10 +63,7 @@ class Cryptocompare(models.Model):
     total_coin_supply = models.DecimalField(max_digits = 200, decimal_places = 2, null=True)
     full_name = models.CharField(max_length=200, null=True)
     symbol = models.CharField(max_length=200, null=True)
-    # usd_change_24_hours = models.DecimalField(max_digits = 200, decimal_places = 2, null=True)
-    # percent_change_24_hours = models.DecimalField(max_digits = 200, decimal_places = 2, null=True)
-    # supply = models.DecimalField(max_digits = 200, decimal_places = 2, null=True)
-    # market_cap_usd = models.DecimalField(max_digits = 200, decimal_places = 2, null=True)
+
 
     def __str__(self):
         return self.name
