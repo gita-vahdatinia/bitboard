@@ -75,7 +75,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='cryptocurrency',
             name='name',
-            field=models.CharField(max_length=100, null=True),
+            field=models.CharField(max_length=1000, null=True),
         ),
         migrations.AlterField(
             model_name='cryptocurrency',
