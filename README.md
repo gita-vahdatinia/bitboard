@@ -32,6 +32,9 @@
     * $ docker exec -it bitboard_web_1 bash
   * then enter:
     * $ python manage.py shell
+  * To perform unit tests enter the following commands: 
+    * $ docker exec -it bitboard_web_1 bash
+    * $ python manage.py tests
 
 ### -- Stop Docker -- ###
   * To stop BitBoard
