@@ -48,7 +48,7 @@ def rss_to_database():
                         ).save()
 
 def get_tokens():
-    url = 'https://api.coinmarketcap.com/v1/ticker/'
+    url = 'https://api.coinmarketcap.com/v1/ticker/?limit=2000'
     r = requests.get(url)
     tokens = r.json()
     token_list = []
